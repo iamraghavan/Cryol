@@ -48,29 +48,6 @@ const NAV_LINKS = [
   { href: '/contact', label: 'Contact' },
 ];
 
-const LOCALES = [
-    { code: 'en-US', name: 'English (US)' },
-    { code: 'en-GB', name: 'English (UK)' },
-    { code: 'zh', name: 'Chinese' },
-    { code: 'ja', name: 'Japanese' },
-    { code: 'de', name: 'German' },
-    { code: 'en-US-alt', name: 'USA (English)' }, // Custom locale for clarity
-    { code: 'en-IE', name: 'UK & Ireland (English)' },
-    { code: 'de-DE', name: 'Germany (Deutsch)' },
-    { code: 'fr-FR', name: 'France (Français)' },
-    { code: 'it-IT', name: 'Italy (Italiano)' },
-    { code: 'zh-CN', name: 'Mainland China' },
-    { code: 'zh-TW', name: 'Taiwan' },
-    { code: 'ko-KR', name: 'Korea' },
-    { code: 'ja-JP', name: 'Japan' },
-    { code: 'pt-BR', name: 'Brazil (Português)' },
-    { code: 'es-419', name: 'Latin America (Español)' },
-    { code: 'ta', name: 'Tamil' },
-    { code: 'kn', name: 'Kannada' },
-    { code: 'ml', name: 'Malayalam' },
-];
-
-
 export default function Header() {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -111,24 +88,6 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="hover:bg-gray-800">
-                <Globe className="h-5 w-5" />
-                <span className="sr-only">Change language</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-gray-800 text-white border-gray-700 max-h-96 overflow-y-auto">
-              {LOCALES.map((locale) => (
-                 <DropdownMenuItem key={locale.code} asChild>
-                    <Link href={`/${locale.code.toLowerCase()}`} locale={false} className="hover:!bg-primary/20 hover:!text-white">
-                        {locale.name}
-                    </Link>
-                 </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
           <Button asChild className="hidden md:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground">
             <Link href="/contact">Get a Free Consultation</Link>
           </Button>
