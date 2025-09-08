@@ -34,7 +34,7 @@ export default function CyberForensicsPage() {
     title: 'Cyber Forensics',
     description: 'In the event of a security breach, our cyber forensics team provides expert digital investigation to uncover evidence, determine the impact, and support legal and recovery efforts.',
     icon: Fingerprint,
-    imageUrl: 'https://picsum.photos/1200/802',
+    imageUrl: 'https://img.freepik.com/free-photo/girl-hacker-wearing-glasses-hoodie-while-stealing-personal-data-with-her-team_482257-20610.jpg',
     imageHint: 'digital forensics'
   };
 
