@@ -7,6 +7,8 @@ import {
   PythonIcon,
   GolangIcon,
   LinuxIcon,
+  ArchLinuxIcon,
+  KaliLinuxIcon,
 } from './icons';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
@@ -21,8 +23,8 @@ const technologies = [
   { name: 'Python', icon: PythonIcon },
   { name: 'Go', icon: GolangIcon },
   { name: 'Linux Foundation', icon: LinuxIcon },
-  { name: 'Arch Linux', icon: LinuxIcon },
-  { name: 'Kali Linux', icon: LinuxIcon },
+  { name: 'Arch Linux', icon: ArchLinuxIcon },
+  { name: 'Kali Linux', icon: KaliLinuxIcon },
 ];
 
 export default function Technology() {
@@ -83,8 +85,8 @@ export default function Technology() {
             <div ref={techContainerRef} className="grid grid-cols-2 gap-6 sm:grid-cols-4">
               {technologies.map(({ name, icon: Icon }) => (
                 <div key={name} className="tech-icon flex flex-col items-center gap-2 opacity-0">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-secondary transition-all hover:bg-primary/10">
-                    <Icon className="h-10 w-10 text-primary" />
+                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-secondary transition-all hover:bg-primary/10 p-2">
+                    <Icon className="h-full w-full" />
                   </div>
                   <span className="font-medium text-center">{name}</span>
                 </div>
