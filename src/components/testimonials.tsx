@@ -1,3 +1,6 @@
+
+'use client';
+
 import {
   Card,
   CardContent,
@@ -5,6 +8,13 @@ import {
 } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Quote } from 'lucide-react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 
 const testimonials = [
   {
@@ -22,6 +32,22 @@ const testimonials = [
       'Cryol developed a comprehensive business website for us that has significantly improved our online presence. Their team is professional, creative, and highly skilled. I highly recommend their services.',
     avatar: 'https://i.pravatar.cc/150?u=udayakumar',
     aiHint: 'businessman portrait',
+  },
+  {
+    name: 'Priya Sharma',
+    role: 'CEO, Tech Innovations Ltd.',
+    testimonial:
+      "Cryol's cloud services have been instrumental in our growth. Their team is knowledgeable, responsive, and has provided us with a scalable and secure infrastructure that we can rely on.",
+    avatar: 'https://i.pravatar.cc/150?u=priya',
+    aiHint: 'businesswoman portrait',
+  },
+  {
+    name: 'Rahul Verma',
+    role: 'Marketing Head, E-Shop Global',
+    testimonial:
+      'The digital marketing campaign designed by Cryol boosted our online visibility and lead generation by over 60%. An exceptional team with a data-driven and results-oriented approach.',
+    avatar: 'https://i.pravatar.cc/150?u=rahul',
+    aiHint: 'man smiling',
   },
 ];
 
@@ -42,38 +68,53 @@ export default function Testimonials() {
             </p>
           </div>
         </div>
-        <div className="mx-auto mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
-          {testimonials.map((testimonial, index) => (
-            <Card
-              key={index}
-              className="rounded-2xl bg-card p-6 shadow-lg"
-            >
-              <CardHeader className="flex flex-row items-center gap-4 p-0 pb-6">
-                <Avatar className="h-16 w-16">
-                  <AvatarImage
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    data-ai-hint={testimonial.aiHint}
-                  />
-                  <AvatarFallback>
-                    {testimonial.name.charAt(0)}
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <h3 className="text-lg font-bold font-headline">{testimonial.name}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.role}
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="relative p-0">
-                <Quote className="absolute -top-2 left-0 h-8 w-8 text-primary/20" />
-                <p className="pl-10 text-lg italic text-foreground">
-                  {testimonial.testimonial}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="mx-auto mt-12">
+          <Carousel
+            opts={{
+              align: 'start',
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="md:basis-1/2">
+                  <div className="p-1 h-full">
+                    <Card
+                      className="flex flex-col h-full rounded-2xl bg-card p-6 shadow-lg"
+                    >
+                      <CardHeader className="flex flex-row items-center gap-4 p-0 pb-6">
+                        <Avatar className="h-16 w-16">
+                          <AvatarImage
+                            src={testimonial.avatar}
+                            alt={testimonial.name}
+                            data-ai-hint={testimonial.aiHint}
+                          />
+                          <AvatarFallback>
+                            {testimonial.name.charAt(0)}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <h3 className="text-lg font-bold font-headline">{testimonial.name}</h3>
+                          <p className="text-sm text-muted-foreground">
+                            {testimonial.role}
+                          </p>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="relative p-0 flex-grow">
+                        <Quote className="absolute -top-2 left-0 h-8 w-8 text-primary/20" />
+                        <p className="pl-10 text-lg italic text-foreground">
+                          {testimonial.testimonial}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2" />
+            <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2" />
+          </Carousel>
         </div>
       </div>
     </section>
