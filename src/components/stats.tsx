@@ -1,30 +1,53 @@
-import { Card, CardContent } from '@/components/ui/card';
-import { ShieldCheck, Briefcase, ClipboardList, Users, Globe } from 'lucide-react';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import { Button } from '@/components/ui/button';
+import { Eye, Download } from 'lucide-react';
 
-const stats = [
-  { icon: ShieldCheck, value: '12,099', label: 'Total No. Vulnerabilities', color: 'text-purple-500' },
-  { icon: Briefcase, value: '4+', label: 'Years in Business', color: 'text-blue-500' },
-  { icon: ClipboardList, value: '600+', label: 'Assessment Completed', color: 'text-yellow-500' },
-  { icon: Users, value: '150+', label: 'Trusted Clients', color: 'text-green-500' },
-  { icon: Globe, value: '21+', label: 'Countries Served', color: 'text-red-500' },
+const brochures = [
+  {
+    name: 'Company Brochure 2024',
+    file: '/brochures/cryol-company-brochure.pdf',
+  },
 ];
 
 export default function Stats() {
   return (
-    <Card className="bg-card/80 backdrop-blur-sm">
-      <CardContent className="p-6">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3">
-          {stats.map((stat, index) => (
-            <div key={index} className="flex items-center gap-4">
-              <stat.icon className={`h-8 w-8 shrink-0 ${stat.color}`} />
-              <div>
-                <p className={`text-2xl font-bold ${stat.color}`}>{stat.value}</p>
-                <p className="text-sm text-muted-foreground">{stat.label}</p>
-              </div>
-            </div>
+    <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="font-bold text-foreground">Document</TableHead>
+            <TableHead className="text-right font-bold text-foreground">Actions</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {brochures.map((brochure) => (
+            <TableRow key={brochure.name}>
+              <TableCell className="font-medium">{brochure.name}</TableCell>
+              <TableCell className="text-right">
+                <Button variant="ghost" size="icon" asChild>
+                  <a href={brochure.file} target="_blank" rel="noopener noreferrer">
+                    <Eye className="h-4 w-4" />
+                    <span className="sr-only">View</span>
+                  </a>
+                </Button>
+                <Button variant="ghost" size="icon" asChild>
+                    <a href={brochure.file} download>
+                        <Download className="h-4 w-4" />
+                        <span className="sr-only">Download</span>
+                    </a>
+                </Button>
+              </TableCell>
+            </TableRow>
           ))}
-        </div>
-      </CardContent>
-    </Card>
+        </TableBody>
+      </Table>
+    </div>
   );
 }
