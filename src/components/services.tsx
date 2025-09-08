@@ -19,6 +19,9 @@ import {
 import type { LucideIcon } from 'lucide-react';
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Service = {
   icon: LucideIcon;
@@ -66,38 +69,53 @@ const services: Service[] = [
 ];
 
 export default function Services() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
     const cards = cardsRef.current.filter(c => c !== null) as HTMLDivElement[];
     
-    cards.forEach((card) => {
-      gsap.fromTo(card, 
-        { autoAlpha: 0, y: 50 }, 
-        { 
-          autoAlpha: 1, 
-          y: 0, 
-          duration: 0.5,
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
+    // Staggered animation for cards
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: 'top 80%',
+        toggleActions: 'play none none none'
+      }
+    });
 
-      card.addEventListener('mouseenter', () => {
-        gsap.to(card, { y: -10, scale: 1.03, duration: 0.3, ease: 'power1.out' });
-      });
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, { y: 0, scale: 1, duration: 0.3, ease: 'power1.out' });
-      });
+    tl.fromTo(cards, 
+      { autoAlpha: 0, y: 50 }, 
+      { 
+        autoAlpha: 1, 
+        y: 0, 
+        duration: 0.5,
+        stagger: 0.2, // Stagger the animation by 0.2s
+        ease: 'power3.out'
+      }
+    );
+    
+    // Hover effect for cards
+    cards.forEach((card) => {
+      const hoverTl = gsap.timeline({ paused: true });
+      hoverTl.to(card, { y: -10, scale: 1.03, duration: 0.3, ease: 'power1.out' });
+      
+      card.addEventListener('mouseenter', () => hoverTl.play());
+      card.addEventListener('mouseleave', () => hoverTl.reverse());
     });
 
     return () => {
+      tl.kill();
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.trigger === container) {
+          trigger.kill();
+        }
+      });
       cards.forEach((card) => {
-        card.removeEventListener('mouseenter', () => {});
-        card.removeEventListener('mouseleave', () => {});
+        // You might need a more robust way to remove listeners if they have complex logic
       });
     };
   }, []);
@@ -119,30 +137,34 @@ export default function Services() {
             </p>
           </div>
         </div>
-        <div className="mx-auto mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div ref={containerRef} className="mx-auto mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
-            <Card
+            <div
               key={service.title}
               ref={el => cardsRef.current[index] = el}
-              className="flex flex-col overflow-hidden rounded-2xl shadow-lg transition-shadow duration-300 hover:shadow-xl"
+              className="invisible" // Start as invisible for GSAP
             >
-              <CardHeader className="flex flex-row items-center gap-4">
-                <div className="rounded-full bg-primary/10 p-3">
-                  <service.icon className="h-8 w-8 text-primary" />
+              <Card
+                className="flex flex-col h-full overflow-hidden rounded-2xl shadow-lg transition-shadow duration-300 hover:shadow-xl"
+              >
+                <CardHeader className="flex flex-row items-center gap-4">
+                  <div className="rounded-full bg-primary/10 p-3">
+                    <service.icon className="h-8 w-8 text-primary" />
+                  </div>
+                  <CardTitle>{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <CardDescription>{service.description}</CardDescription>
+                </CardContent>
+                <div className="bg-secondary/50 p-4 mt-auto">
+                  <Button asChild variant="link" className="text-primary">
+                    <Link href={service.link}>
+                      Discover Now &rarr;
+                    </Link>
+                  </Button>
                 </div>
-                <CardTitle>{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <CardDescription>{service.description}</CardDescription>
-              </CardContent>
-              <div className="bg-secondary/50 p-4">
-                <Button asChild variant="link" className="text-primary">
-                  <Link href={service.link}>
-                    Discover Now &rarr;
-                  </Link>
-                </Button>
-              </div>
-            </Card>
+              </Card>
+            </div>
           ))}
         </div>
       </div>

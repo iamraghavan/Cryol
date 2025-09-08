@@ -1,12 +1,60 @@
+'use client';
+
 import Image from 'next/image';
 import { Card } from '@/components/ui/card';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const image = imageRef.current;
+    const text = textRef.current;
+
+    if (!section || !image || !text) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 70%',
+        toggleActions: 'play none none none',
+      },
+    });
+
+    tl.fromTo(
+      image,
+      { x: -100, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1, ease: 'power3.out' }
+    ).fromTo(
+      text,
+      { x: 100, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1, ease: 'power3.out' },
+      '-=0.8' // Start this animation 0.8s before the previous one ends
+    );
+    
+    return () => {
+      tl.kill();
+       ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.trigger === section) {
+          trigger.kill();
+        }
+      });
+    };
+
+  }, []);
+
   return (
-    <section id="about" className="w-full py-12 md:py-24 lg:py-32 bg-secondary">
+    <section ref={sectionRef} id="about" className="w-full py-12 md:py-24 lg:py-32 bg-secondary overflow-x-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="flex items-center justify-center">
+          <div ref={imageRef} className="flex items-center justify-center">
             <Card className="overflow-hidden rounded-xl shadow-lg">
               <Image
                 alt="Our Mission"
@@ -18,7 +66,7 @@ export default function About() {
               />
             </Card>
           </div>
-          <div className="flex flex-col justify-center space-y-4">
+          <div ref={textRef} className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
                 WHO WE ARE

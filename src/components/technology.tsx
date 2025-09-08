@@ -1,9 +1,16 @@
+'use client';
+
 import {
   BurpSuiteIcon,
   NodeJsIcon,
   AzureIcon,
   PythonIcon,
 } from './icons';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const technologies = [
   { name: 'BurpSuite', icon: BurpSuiteIcon },
@@ -13,8 +20,44 @@ const technologies = [
 ];
 
 export default function Technology() {
+  const techContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const techIcons = techContainerRef.current?.querySelectorAll('.tech-icon');
+    if (!techIcons || techIcons.length === 0) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: techContainerRef.current,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+    });
+
+    tl.fromTo(
+      techIcons,
+      { opacity: 0, scale: 0.5 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.5,
+        ease: 'back.out(1.7)',
+        stagger: 0.2, // Stagger animation for each icon
+      }
+    );
+
+    return () => {
+      tl.kill();
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.trigger === techContainerRef.current) {
+          trigger.kill();
+        }
+      });
+    };
+  }, []);
+
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32">
+    <section id="technology" className="w-full py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="space-y-4">
@@ -32,9 +75,9 @@ export default function Technology() {
           </div>
           <div className="flex flex-col justify-center">
             <h3 className="mb-6 text-xl font-semibold">Technology Stack</h3>
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+            <div ref={techContainerRef} className="grid grid-cols-2 gap-6 sm:grid-cols-4">
               {technologies.map(({ name, icon: Icon }) => (
-                <div key={name} className="flex flex-col items-center gap-2">
+                <div key={name} className="tech-icon flex flex-col items-center gap-2 opacity-0">
                   <div className="flex h-20 w-20 items-center justify-center rounded-full bg-secondary transition-all hover:bg-primary/10">
                     <Icon className="h-10 w-10 text-primary" />
                   </div>
