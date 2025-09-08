@@ -34,8 +34,8 @@ export default function DigitalMarketingPage() {
     title: 'Digital Marketing',
     description: 'Drive growth and reach your target audience with our strategic, data-driven digital marketing campaigns. From SEO and PPC to social media and content marketing, we’ve got you covered.',
     icon: Megaphone,
-    imageUrl: 'https://picsum.photos/1200/804',
-    imageHint: 'digital marketing'
+    imageUrl: 'https://img.freepik.com/free-photo/digital-marketing-with-icons-business-people_53876-94833.jpg',
+    imageHint: 'digital marketing people'
   };
 
   return (
