@@ -198,7 +198,8 @@ export function QuoteForm() {
 
         <Button
           type="submit"
-          className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white text-lg py-3 rounded-xl hover:from-blue-600 hover:to-purple-600"
+          className="w-full text-lg py-3 rounded-xl"
+          size="lg"
         >
           Please Send Message
         </Button>
