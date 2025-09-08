@@ -33,8 +33,8 @@ export default function CloudServicesPage() {
     title: 'Cloud Services',
     description: 'Leverage the power of the cloud with our secure, flexible, and scalable solutions. We help you migrate, manage, and optimize your cloud infrastructure for peak performance and cost-efficiency.',
     icon: Cloud,
-    imageUrl: 'https://picsum.photos/1200/801',
-    imageHint: 'cloud infrastructure'
+    imageUrl: 'https://img.freepik.com/free-photo/saas-concept-collage_23-2149399283.jpg',
+    imageHint: 'cloud services collage'
   };
 
   return (
