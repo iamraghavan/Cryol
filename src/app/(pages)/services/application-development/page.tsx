@@ -33,7 +33,7 @@ export default function AppDevPage() {
     description: 'We build custom, scalable, and secure applications to meet your business needs. From web to mobile, our team delivers high-quality solutions that streamline operations and enhance user experiences.',
     icon: AppWindow,
     imageUrl: 'https://picsum.photos/1200/800',
-    imageHint: 'software development team'
+    imageHint: 'software development'
   };
 
   return (

@@ -34,8 +34,8 @@ export default function CyberForensicsPage() {
     title: 'Cyber Forensics',
     description: 'In the event of a security breach, our cyber forensics team provides expert digital investigation to uncover evidence, determine the impact, and support legal and recovery efforts.',
     icon: Fingerprint,
-    imageUrl: 'https://picsum.photos/1200/800',
-    imageHint: 'forensics investigation'
+    imageUrl: 'https://picsum.photos/1200/802',
+    imageHint: 'digital forensics'
   };
 
   return (
