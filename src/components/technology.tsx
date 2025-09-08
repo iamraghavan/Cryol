@@ -1,30 +1,21 @@
 'use client';
 
-import {
-  BurpSuiteIcon,
-  NodeJsIcon,
-  AzureIcon,
-  PythonIcon,
-  GolangIcon,
-  LinuxIcon,
-  ArchLinuxIcon,
-  KaliLinuxIcon,
-} from './icons';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const technologies = [
-  { name: 'BurpSuite', icon: BurpSuiteIcon },
-  { name: 'Node.js', icon: NodeJsIcon },
-  { name: 'Azure', icon: AzureIcon },
-  { name: 'Python', icon: PythonIcon },
-  { name: 'Go', icon: GolangIcon },
-  { name: 'Linux Foundation', icon: LinuxIcon },
-  { name: 'Arch Linux', icon: ArchLinuxIcon },
-  { name: 'Kali Linux', icon: KaliLinuxIcon },
+  { name: 'BurpSuite', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/BurpSuite_logo.svg/600px-BurpSuite_logo.svg.png' },
+  { name: 'Node.js', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg' },
+  { name: 'Azure', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg' },
+  { name: 'Python', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg' },
+  { name: 'Go', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg' },
+  { name: 'Linux Foundation', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/f/fd/Linux_Foundation_logo_2013.svg' },
+  { name: 'Arch Linux', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.svg' },
+  { name: 'Kali Linux', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Kali-dragon-icon.svg' },
 ];
 
 export default function Technology() {
@@ -83,10 +74,10 @@ export default function Technology() {
           <div className="flex flex-col justify-center">
             <h3 className="mb-6 text-xl font-semibold font-headline">Technology Stack</h3>
             <div ref={techContainerRef} className="grid grid-cols-2 gap-6 sm:grid-cols-4">
-              {technologies.map(({ name, icon: Icon }) => (
+              {technologies.map(({ name, logoUrl }) => (
                 <div key={name} className="tech-icon flex flex-col items-center gap-2 opacity-0">
                   <div className="flex h-20 w-20 items-center justify-center rounded-full bg-secondary transition-all hover:bg-primary/10 p-2">
-                    <Icon className="h-full w-full" />
+                    <Image src={logoUrl} alt={`${name} logo`} width={64} height={64} className="h-full w-full object-contain" />
                   </div>
                   <span className="font-medium text-center">{name}</span>
                 </div>
