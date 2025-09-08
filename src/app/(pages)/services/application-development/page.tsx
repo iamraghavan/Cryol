@@ -1,4 +1,4 @@
-import { AppWindow, Code, Database, Smartphone, Web } from 'lucide-react';
+import { AppWindow, Code, Database, Smartphone, Globe } from 'lucide-react';
 import Image from 'next/image';
 import ServicePage from '@/components/service-page';
 import { QuoteForm } from '@/components/quote-form';
@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const features = [
   {
-    icon: Web,
+    icon: Globe,
     title: 'Custom Web Applications',
     description: 'We build tailor-made web applications that are scalable, secure, and perfectly aligned with your business objectives.',
   },
