@@ -51,7 +51,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-gray-900 text-white">
       <div className="container mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-6">
         <Link href="/" className="mr-6 flex items-center space-x-2">
-          <Image src="/assets/img/cryol___logo__white.png" alt="Cryol Logo" width={120} height={48} />
+          <Image src="/assets/img/cryol___logo__white.png" alt="Cryol Logo" width={160} height={64} />
         </Link>
 
         <nav className="hidden md:flex md:items-center md:gap-6 text-sm font-medium">
@@ -101,7 +101,7 @@ export default function Header() {
                 </SheetHeader>
               <div className="flex flex-col gap-6 p-6">
                  <Link href="/" className="flex items-center space-x-2">
-                    <Image src="/assets/img/cryol___logo__white.png" alt="Cryol Logo" width={140} height={56} />
+                    <Image src="/assets/img/cryol___logo__white.png" alt="Cryol Logo" width={160} height={64} />
                  </Link>
                 <nav className="flex flex-col gap-4">
                   {NAV_LINKS.map((link) =>
