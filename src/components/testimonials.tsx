@@ -78,7 +78,7 @@ export default function Testimonials() {
           >
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="md:basis-1/2">
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2">
                   <div className="p-1 h-full">
                     <Card
                       className="flex flex-col h-full rounded-2xl bg-card p-6 shadow-lg"
@@ -112,8 +112,8 @@ export default function Testimonials() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2" />
-            <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2" />
+            <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2 text-primary" />
+            <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2 text-primary" />
           </Carousel>
         </div>
       </div>
