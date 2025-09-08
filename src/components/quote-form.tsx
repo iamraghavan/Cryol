@@ -6,6 +6,8 @@ import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
+import { useRef } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -40,10 +42,12 @@ const formSchema = z.object({
     message: 'You have to select at least one service.',
   }),
   message: z.string().optional(),
+  recaptcha: z.string().optional(),
 });
 
 export function QuoteForm() {
   const { toast } = useToast();
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -64,6 +68,7 @@ export function QuoteForm() {
       description: "We've received your request and will be in touch shortly.",
     });
     form.reset();
+    recaptchaRef.current?.reset();
   }
 
   return (
@@ -196,9 +201,32 @@ export function QuoteForm() {
           )}
         />
 
+        <FormField
+          control={form.control}
+          name="recaptcha"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                    onChange={field.onChange}
+                  />
+                ) : (
+                   <div className="text-sm text-muted-foreground p-2 rounded-md bg-muted">
+                    To enable ReCaptcha, please add your site key to the .env file.
+                   </div>
+                )}
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <Button
           type="submit"
-          className="w-full text-lg py-3 rounded-xl"
+          className="w-full text-lg py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground"
           size="lg"
         >
           Please Send Message
