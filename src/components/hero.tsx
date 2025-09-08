@@ -52,12 +52,12 @@ export default function Hero() {
               technology solutions to drive growth, innovation, and efficiency.
             </p>
           </div>
-          <Card className="bg-white/10 backdrop-blur-lg border border-white/20 text-white rounded-2xl">
+          <Card className="bg-card text-card-foreground rounded-2xl shadow-2xl">
             <CardHeader>
-              <CardTitle className="text-white font-headline">
+              <CardTitle className="font-headline">
                 Quick Enquiry
               </CardTitle>
-              <CardDescription className="text-gray-300">
+              <CardDescription>
                 Connect with us to explore our IT solutions.
               </CardDescription>
             </CardHeader>

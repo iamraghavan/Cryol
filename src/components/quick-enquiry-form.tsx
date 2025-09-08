@@ -3,7 +3,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -30,29 +31,36 @@ const formSchema = z.object({
   name: z.string().min(2, {
     message: 'Name must be at least 2 characters.',
   }),
+  email: z.string().email({
+    message: 'Please enter a valid email address.',
+  }),
   phone: z.string().min(10, {
     message: 'Please enter a valid phone number.',
   }),
   department: z.string({
     required_error: 'Please select a department to contact.',
   }),
+  recaptcha: z.string().optional(),
 });
 
 
 export function QuickEnquiryForm() {
-  const [darkForm, setDarkForm] = useState(false);
+  const [isHeroForm, setIsHeroForm] = useState(false);
   const { toast } = useToast();
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   useEffect(() => {
     // This code now runs only on the client, after the initial render.
-    const isDark = window.location.pathname.startsWith('/contact') ? false : true;
-    setDarkForm(isDark);
+    // The hero form has a dark background, the contact page form does not.
+    const isDark = window.location.pathname === '/';
+    setIsHeroForm(isDark);
   }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
+      email: '',
       phone: '',
     },
   });
@@ -64,18 +72,19 @@ export function QuickEnquiryForm() {
       description: "We've received your request and will be in touch shortly.",
     });
     form.reset();
+    recaptchaRef.current?.reset();
   }
 
-  const labelClass = darkForm ? 'text-white' : '';
-  const inputClass = darkForm ? 'bg-white/20 border-white/30 text-white placeholder:text-gray-400 focus:ring-primary' : 'bg-background';
-  const phoneInputClass = darkForm ? 'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm bg-white/20 border-white/30 text-white [&_input]:bg-transparent [&_input]:text-white [&_input]:placeholder:text-gray-400 [&_select]:bg-gray-800' : 'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm';
-  const selectTriggerClass = darkForm ? 'bg-white/20 border-white/30 text-white placeholder:text-gray-400 focus:ring-primary' : '';
-  const selectContentClass = darkForm ? 'bg-gray-800 text-white border-gray-700' : '';
+  const labelClass = isHeroForm ? 'text-white' : '';
+  const inputClass = isHeroForm ? 'bg-white/20 border-white/30 text-white placeholder:text-gray-400 focus:ring-primary' : 'bg-background';
+  const phoneInputClass = isHeroForm ? 'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm bg-white/20 border-white/30 text-white [&_input]:bg-transparent [&_input]:text-white [&_input]:placeholder:text-gray-400 [&_select]:bg-gray-800' : 'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm';
+  const selectTriggerClass = isHeroForm ? 'bg-white/20 border-white/30 text-white placeholder:text-gray-400 focus:ring-primary' : '';
+  const selectContentClass = isHeroForm ? 'bg-gray-800 text-white border-gray-700' : '';
 
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
           name="name"
@@ -84,6 +93,20 @@ export function QuickEnquiryForm() {
               <FormLabel className={labelClass}>Name *</FormLabel>
               <FormControl>
                 <Input placeholder="John Doe" {...field} className={inputClass} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className={labelClass}>Email *</FormLabel>
+              <FormControl>
+                <Input placeholder="john.doe@example.com" {...field} className={inputClass} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -134,6 +157,31 @@ export function QuickEnquiryForm() {
             </FormItem>
           )}
         />
+        
+        <FormField
+          control={form.control}
+          name="recaptcha"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                    onChange={field.onChange}
+                    theme={isHeroForm ? 'dark' : 'light'}
+                  />
+                ) : (
+                   <div className="text-sm text-muted-foreground p-2 rounded-md bg-muted">
+                    To enable ReCaptcha, please add your site key to the .env file.
+                   </div>
+                )}
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-3 rounded-xl">Submit</Button>
       </form>
     </Form>
