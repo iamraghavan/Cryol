@@ -22,6 +22,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -71,29 +73,26 @@ export function QuickEnquiryForm() {
           )}
         />
 
-        <FormItem>
-          <FormLabel className="text-white">Phone Number *</FormLabel>
-          <div className="flex">
-            <span className="inline-flex items-center rounded-l-md border border-r-0 border-input bg-white/30 px-3 text-white">
-              +91
-            </span>
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-white">Phone Number *</FormLabel>
                 <FormControl>
-                  <Input
-                    type="tel"
-                    placeholder="9876543210"
-                    className="rounded-l-none bg-white/20 border-white/30 text-white placeholder:text-gray-400 focus:ring-primary"
+                  <PhoneInput
+                    international
+                    defaultCountry="IN"
+                    placeholder="Enter phone number"
                     {...field}
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm bg-white/20 border-white/30 text-white [&_input]:bg-transparent [&_input]:text-white [&_input]:placeholder:text-gray-400 [&_select]:bg-gray-800"
                   />
                 </FormControl>
-              )}
-            />
-          </div>
-          <FormMessage className="text-red-400">{form.formState.errors.phone?.message}</FormMessage>
-        </FormItem>
+              <FormMessage className="text-red-400">{form.formState.errors.phone?.message}</FormMessage>
+            </FormItem>
+          )}
+        />
+        
 
         <FormField
           control={form.control}
@@ -108,10 +107,11 @@ export function QuickEnquiryForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent className="bg-gray-800 text-white border-gray-700">
-                  <SelectItem value="sales">Sales</SelectItem>
-                  <SelectItem value="support">Support</SelectItem>
-                  <SelectItem value="development">Development</SelectItem>
-                  <SelectItem value="general">General Enquiry</SelectItem>
+                  <SelectItem value="application-development">Application Development</SelectItem>
+                  <SelectItem value="cloud-services">Cloud Services</SelectItem>
+                  <SelectItem value="cyber-forensics">Cyber Forensics</SelectItem>
+                  <SelectItem value="cybersecurity">Cybersecurity</SelectItem>
+                  <SelectItem value="marketing">Marketing</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />

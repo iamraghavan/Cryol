@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Card,
   CardContent,
@@ -15,6 +17,8 @@ import {
   Megaphone,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 
 type Service = {
   icon: LucideIcon;
@@ -62,6 +66,43 @@ const services: Service[] = [
 ];
 
 export default function Services() {
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const cards = cardsRef.current.filter(c => c !== null) as HTMLDivElement[];
+    
+    cards.forEach((card) => {
+      gsap.fromTo(card, 
+        { autoAlpha: 0, y: 50 }, 
+        { 
+          autoAlpha: 1, 
+          y: 0, 
+          duration: 0.5,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+
+      card.addEventListener('mouseenter', () => {
+        gsap.to(card, { y: -10, scale: 1.03, duration: 0.3, ease: 'power1.out' });
+      });
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, { y: 0, scale: 1, duration: 0.3, ease: 'power1.out' });
+      });
+    });
+
+    return () => {
+      cards.forEach((card) => {
+        // Clean up listeners if component unmounts
+        card.removeEventListener('mouseenter', () => {});
+        card.removeEventListener('mouseleave', () => {});
+      });
+    };
+  }, []);
+  
   return (
     <section id="services" className="w-full bg-background py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
@@ -79,30 +120,28 @@ export default function Services() {
             </p>
           </div>
         </div>
-        <div className="mx-auto mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3" style={{ perspective: '1000px' }}>
-          {services.map((service) => (
+        <div className="mx-auto mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((service, index) => (
             <Card
               key={service.title}
-              className="flex flex-col overflow-hidden transition-transform duration-500 ease-in-out hover:shadow-xl rounded-2xl group"
-              style={{ transformStyle: 'preserve-3d' }}
+              ref={el => cardsRef.current[index] = el}
+              className="flex flex-col overflow-hidden rounded-2xl shadow-lg transition-shadow duration-300 hover:shadow-xl"
             >
-              <div className="transition-transform duration-500 group-hover:rotate-y-6 group-hover:rotate-x-3 group-hover:scale-105">
-                <CardHeader className="flex flex-row items-center gap-4">
-                  <div className="rounded-full bg-primary/10 p-3">
-                    <service.icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <CardTitle>{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <CardDescription>{service.description}</CardDescription>
-                </CardContent>
-                <div className="bg-secondary/50 p-4">
-                  <Button asChild variant="link" className="text-primary">
-                    <Link href={service.link}>
-                      Discover Now &rarr;
-                    </Link>
-                  </Button>
+              <CardHeader className="flex flex-row items-center gap-4">
+                <div className="rounded-full bg-primary/10 p-3">
+                  <service.icon className="h-8 w-8 text-primary" />
                 </div>
+                <CardTitle>{service.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <CardDescription>{service.description}</CardDescription>
+              </CardContent>
+              <div className="bg-secondary/50 p-4">
+                <Button asChild variant="link" className="text-primary">
+                  <Link href={service.link}>
+                    Discover Now &rarr;
+                  </Link>
+                </Button>
               </div>
             </Card>
           ))}
