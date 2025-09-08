@@ -30,6 +30,30 @@ const nextConfig: NextConfig = {
       }
     ],
   },
+  i18n: {
+    locales: [
+        'en-us', 
+        'en-gb', 
+        'zh', 
+        'ja', 
+        'de', 
+        'en-us-alt', 
+        'en-ie', 
+        'de-de', 
+        'fr-fr',
+        'it-it',
+        'zh-cn',
+        'zh-tw',
+        'ko-kr',
+        'ja-jp',
+        'pt-br',
+        'es-419',
+        'ta',
+        'kn',
+        'ml',
+    ],
+    defaultLocale: 'en-us',
+  },
 };
 
 export default nextConfig;

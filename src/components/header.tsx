@@ -10,14 +10,24 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { Menu, Search, ChevronDown } from 'lucide-react';
+import { Menu, ChevronDown, Globe } from 'lucide-react';
 import Image from 'next/image';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuPortal
 } from '@/components/ui/dropdown-menu';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
@@ -37,6 +47,29 @@ const NAV_LINKS = [
   { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];
+
+const LOCALES = [
+    { code: 'en-US', name: 'English (US)' },
+    { code: 'en-GB', name: 'English (UK)' },
+    { code: 'zh', name: 'Chinese' },
+    { code: 'ja', name: 'Japanese' },
+    { code: 'de', name: 'German' },
+    { code: 'en-US-alt', name: 'USA (English)' }, // Custom locale for clarity
+    { code: 'en-IE', name: 'UK & Ireland (English)' },
+    { code: 'de-DE', name: 'Germany (Deutsch)' },
+    { code: 'fr-FR', name: 'France (Français)' },
+    { code: 'it-IT', name: 'Italy (Italiano)' },
+    { code: 'zh-CN', name: 'Mainland China' },
+    { code: 'zh-TW', name: 'Taiwan' },
+    { code: 'ko-KR', name: 'Korea' },
+    { code: 'ja-JP', name: 'Japan' },
+    { code: 'pt-BR', name: 'Brazil (Português)' },
+    { code: 'es-419', name: 'Latin America (Español)' },
+    { code: 'ta', name: 'Tamil' },
+    { code: 'kn', name: 'Kannada' },
+    { code: 'ml', name: 'Malayalam' },
+];
+
 
 export default function Header() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -78,10 +111,23 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" className="hidden md:inline-flex hover:bg-gray-800">
-            <Search className="h-5 w-5" />
-            <span className="sr-only">Search</span>
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="hover:bg-gray-800">
+                <Globe className="h-5 w-5" />
+                <span className="sr-only">Change language</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-gray-800 text-white border-gray-700 max-h-96 overflow-y-auto">
+              {LOCALES.map((locale) => (
+                 <DropdownMenuItem key={locale.code} asChild>
+                    <Link href={`/${locale.code.toLowerCase()}`} locale={false} className="hover:!bg-primary/20 hover:!text-white">
+                        {locale.name}
+                    </Link>
+                 </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           <Button asChild className="hidden md:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground">
             <Link href="/contact">Get a Free Consultation</Link>
@@ -95,15 +141,38 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="bg-gray-900 text-white">
-              <SheetHeader className="sr-only">
-                <SheetTitle>Mobile Menu</SheetTitle>
-              </SheetHeader>
+                <SheetHeader>
+                  <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
+                </SheetHeader>
               <div className="flex flex-col gap-6 p-6">
                  <Link href="/" className="flex items-center space-x-2">
                     <Image src="/assets/img/cryol___logo__white.png" alt="Cryol Logo" width={120} height={50} />
                  </Link>
                 <nav className="flex flex-col gap-4">
-                  {NAV_LINKS.map((link) => (
+                  {NAV_LINKS.map((link) =>
+                    link.subLinks ? (
+                      <Accordion key={link.label} type="single" collapsible>
+                        <AccordionItem value={link.label} className="border-b-0">
+                          <AccordionTrigger className="text-lg font-medium transition-colors hover:text-primary py-2">
+                            {link.label}
+                          </AccordionTrigger>
+                          <AccordionContent className="pl-4">
+                            <nav className="flex flex-col gap-2">
+                              {link.subLinks.map((subLink) => (
+                                <Link
+                                  key={subLink.label}
+                                  href={subLink.href}
+                                  className="text-base font-medium text-gray-300 transition-colors hover:text-primary"
+                                  onClick={() => setMenuOpen(false)}
+                                >
+                                  {subLink.label}
+                                </Link>
+                              ))}
+                            </nav>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                    ) : (
                      <Link
                       key={link.label}
                       href={link.href}
@@ -112,14 +181,12 @@ export default function Header() {
                     >
                       {link.label}
                     </Link>
-                  ))}
+                  )
+                )}
                 </nav>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 mt-4">
                    <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => setMenuOpen(false)}>
                       <Link href="/contact">Get a Free Consultation</Link>
-                   </Button>
-                   <Button variant="outline" className="border-gray-700 hover:bg-gray-800">
-                      <Search className="mr-2 h-4 w-4" /> Search
                    </Button>
                 </div>
               </div>
