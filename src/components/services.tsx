@@ -128,7 +128,7 @@ export default function Services() {
             <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
               OUR SERVICES
             </div>
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">
               Empowering Your Digital Future
             </h2>
             <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -151,7 +151,7 @@ export default function Services() {
                   <div className="rounded-full bg-primary/10 p-3">
                     <service.icon className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle>{service.title}</CardTitle>
+                  <CardTitle className="font-headline">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow">
                   <CardDescription>{service.description}</CardDescription>

@@ -18,7 +18,7 @@ export default function ContactPage() {
                     <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
                         CONTACT US
                     </div>
-                    <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Get in Touch</h1>
+                    <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">Get in Touch</h1>
                     <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                         Have a question or a project in mind? We'd love to hear from you. Fill out the form or contact us directly.
                     </p>
@@ -40,7 +40,7 @@ export default function ContactPage() {
               </div>
               <Card className="shadow-2xl bg-card rounded-2xl">
                 <CardHeader>
-                    <CardTitle>Send Us a Message</CardTitle>
+                    <CardTitle className="font-headline">Send Us a Message</CardTitle>
                     <CardDescription>We'll get back to you as soon as possible.</CardDescription>
                 </CardHeader>
                 <CardContent>

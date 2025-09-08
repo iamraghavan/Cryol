@@ -19,7 +19,7 @@ export default function CyberForensicsPage() {
                     <Fingerprint className="h-4 w-4" />
                     Our Services
                   </div>
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">
                     Cyber Forensics
                   </h1>
                 </div>

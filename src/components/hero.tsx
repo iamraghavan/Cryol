@@ -25,7 +25,7 @@ export default function Hero() {
       <div className="container relative z-10 mx-auto px-4 md:px-6 hero-content">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="flex flex-col justify-center space-y-4">
-            <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-shadow-lg">
+            <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-shadow-lg font-headline">
               Expert IT Solutions
             </h1>
             <p className="max-w-[600px] text-gray-200 md:text-xl text-shadow">
@@ -35,7 +35,7 @@ export default function Hero() {
           </div>
           <Card className="bg-white/10 backdrop-blur-lg border border-white/20 text-white rounded-2xl">
             <CardHeader>
-              <CardTitle className="text-white">Quick Enquiry</CardTitle>
+              <CardTitle className="text-white font-headline">Quick Enquiry</CardTitle>
               <CardDescription className="text-gray-300">
                 Connect with us to explore our IT solutions.
               </CardDescription>

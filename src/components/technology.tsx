@@ -64,7 +64,7 @@ export default function Technology() {
             <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
               OUR TECHNOLOGY
             </div>
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">
               Innovative Solutions
             </h2>
             <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -74,7 +74,7 @@ export default function Technology() {
             </p>
           </div>
           <div className="flex flex-col justify-center">
-            <h3 className="mb-6 text-xl font-semibold">Technology Stack</h3>
+            <h3 className="mb-6 text-xl font-semibold font-headline">Technology Stack</h3>
             <div ref={techContainerRef} className="grid grid-cols-2 gap-6 sm:grid-cols-4">
               {technologies.map(({ name, icon: Icon }) => (
                 <div key={name} className="tech-icon flex flex-col items-center gap-2 opacity-0">
