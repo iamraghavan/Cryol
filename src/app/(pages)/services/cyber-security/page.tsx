@@ -92,8 +92,8 @@ export default function CyberSecurityPage() {
     description:
       'Protect your digital assets with our comprehensive cybersecurity services. We offer everything from threat assessment and penetration testing to 24/7 monitoring and incident response.',
     icon: ShieldCheck,
-    imageUrl: 'https://picsum.photos/1200/803',
-    imageHint: 'cyber security'
+    imageUrl: 'https://img.freepik.com/free-photo/standard-quality-control-collage-concept_23-2149595831.jpg',
+    imageHint: 'cyber security concept'
   };
 
   return (
