@@ -1,51 +1,52 @@
-import { Button } from '@/components/ui/button';
-import { Megaphone } from 'lucide-react';
+import { Megaphone, Search, BarChart, Users, Mail } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+import ServicePage from '@/components/service-page';
+import { QuoteForm } from '@/components/quote-form';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+
+const features = [
+  {
+    icon: Search,
+    title: 'Search Engine Optimization (SEO)',
+    description: 'Increase your organic visibility and drive targeted traffic with our proven SEO strategies.',
+  },
+  {
+    icon: BarChart,
+    title: 'Pay-Per-Click (PPC) Advertising',
+    description: 'We create and manage high-ROI PPC campaigns on Google Ads and social media to deliver immediate results.',
+  },
+  {
+    icon: Users,
+    title: 'Social Media Marketing',
+    description: 'Build your brand and engage with your audience through strategic social media management and content creation.',
+  },
+    {
+    icon: Mail,
+    title: 'Email & Content Marketing',
+    description: 'Nurture leads and drive conversions with compelling content and targeted email marketing campaigns.',
+  },
+];
+
 
 export default function DigitalMarketingPage() {
+  const service = {
+    title: 'Digital Marketing',
+    description: 'Drive growth and reach your target audience with our strategic, data-driven digital marketing campaigns. From SEO and PPC to social media and content marketing, we’ve got you covered.',
+    icon: Megaphone,
+    imageUrl: 'https://picsum.photos/1200/800',
+    imageHint: 'marketing analytics graph'
+  };
+
   return (
-    <section className="w-full bg-secondary py-12 md:py-24 lg:py-32">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="flex flex-col justify-center space-y-4">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 rounded-lg bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-                <Megaphone className="h-4 w-4" />
-                Our Services
-              </div>
-              <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl font-headline">
-                Digital Marketing
-              </h1>
-            </div>
-            <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Drive growth and reach your target audience with our strategic,
-              data-driven digital marketing campaigns. From SEO and PPC to
-              social media and content marketing, we've got you covered.
-            </p>
-            <div className="prose prose-blue max-w-none text-muted-foreground">
-              <p>
-                Our marketing experts work with you to understand your audience
-                and create campaigns that deliver results. We focus on ROI and
-                provide transparent reporting to track your success.
-              </p>
-            </div>
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-              <Link href="/contact">Start a Campaign</Link>
-            </Button>
-          </div>
-          <div className="flex items-center justify-center">
-            <Image
-              alt="Digital Marketing"
-              className="aspect-video w-full rounded-xl object-cover shadow-lg"
-              height={450}
-              src="https://picsum.photos/800/450"
-              width={800}
-              data-ai-hint="marketing analytics"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
+    <ServicePage
+      service={service}
+      features={features}
+      contactComponent={
+        <Card className="p-8 shadow-lg">
+          <QuoteForm />
+        </Card>
+      }
+    />
   );
 }
