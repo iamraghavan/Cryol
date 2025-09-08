@@ -60,9 +60,9 @@ export default function About() {
             <Image
               alt="Developer activity"
               className="aspect-video w-full object-contain"
-              height={450}
+              height={600}
               src="/assets/img/Developer--activity-pana.svg"
-              width={800}
+              width={1000}
               data-ai-hint="office collaboration"
             />
           </div>
