@@ -60,10 +60,10 @@ export default function About() {
           <div ref={imageRef} className="flex items-center justify-center">
             <Card className="overflow-hidden rounded-xl shadow-lg">
               <Image
-                alt="Our Team Collaborating"
+                alt="Developer activity"
                 className="aspect-video w-full object-cover"
                 height={450}
-                src="https://picsum.photos/800/450"
+                src="/assets/img/Developer--activity-pana.svg"
                 width={800}
                 data-ai-hint="office collaboration"
               />
