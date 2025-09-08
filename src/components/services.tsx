@@ -33,35 +33,35 @@ const services: Service[] = [
     title: 'Application Development',
     description:
       'Building custom, scalable applications to streamline operations and enhance user experiences.',
-    link: '#',
+    link: '/services/application-development',
   },
   {
     icon: Cloud,
     title: 'Cloud Services',
     description:
       'Delivering secure, flexible cloud solutions to optimize performance and scalability.',
-    link: '#',
+    link: '/services/cloud-services',
   },
   {
     icon: ShieldCheck,
     title: 'Cyber Security',
     description:
       'Protecting your assets with advanced security measures and proactive threat management.',
-    link: '#',
+    link: '/services/cyber-security',
   },
   {
     icon: Fingerprint,
     title: 'Cyber Forensics',
     description:
       'Investigating digital incidents with evidence-driven analysis for compliance and security.',
-    link: '#',
+    link: '/services/cyber-forensics',
   },
   {
     icon: Megaphone,
     title: 'Digital Marketing',
     description:
       'Driving growth with strategic, data-driven marketing campaigns tailored to your audience.',
-    link: '#',
+    link: '/services/digital-marketing',
   },
 ];
 
@@ -96,7 +96,6 @@ export default function Services() {
 
     return () => {
       cards.forEach((card) => {
-        // Clean up listeners if component unmounts
         card.removeEventListener('mouseenter', () => {});
         card.removeEventListener('mouseleave', () => {});
       });

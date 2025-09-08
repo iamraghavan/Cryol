@@ -14,7 +14,7 @@ export default function Cta() {
         </p>
         <div className="mt-6">
           <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
-            <Link href="#contact">Get in Touch</Link>
+            <Link href="/contact">Get in Touch</Link>
           </Button>
         </div>
       </div>

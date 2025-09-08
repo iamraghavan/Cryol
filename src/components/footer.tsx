@@ -20,19 +20,19 @@ const socialLinks = [
 ];
 
 const serviceLinks = [
-  'Application Development',
-  'Cloud Services',
-  'Cyber Security',
-  'Cyber Forensics',
-  'Digital Marketing',
+  {label: 'Application Development', href: '/services/application-development'},
+  {label: 'Cloud Services', href: '/services/cloud-services'},
+  {label: 'Cyber Security', href: '/services/cyber-security'},
+  {label: 'Cyber Forensics', href: '/services/cyber-forensics'},
+  {label: 'Digital Marketing', href: '/services/digital-marketing'},
 ];
 const quickLinks = [
-  'Home',
-  'About Us',
-  'Services',
-  'Case Studies',
-  'Contact',
-  'Blog',
+  {label: 'Home', href: '/'},
+  {label: 'About Us', href: '/about'},
+  {label: 'Services', href: '/services'},
+  {label: 'Case Studies', href: '/case-studies'},
+  {label: 'Contact', href: '/contact'},
+  {label: 'Blog', href: '/blog'},
 ];
 const supportLinks = [
   'Help & FAQ',
@@ -48,7 +48,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-12 md:px-6 lg:py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <Link href="#" className="flex items-center">
+            <Link href="/" className="flex items-center">
               <Image src="/assets/img/Cryol_White.svg" alt="Cryol Logo" width={100} height={40} />
             </Link>
             <p className="text-gray-400">
@@ -88,12 +88,12 @@ export default function Footer() {
             <h3 className="mb-4 font-semibold text-white">Our Services</h3>
             <ul className="space-y-2">
               {serviceLinks.map((link) => (
-                <li key={link}>
+                <li key={link.label}>
                   <Link
-                    href="#"
+                    href={link.href}
                     className="text-gray-400 hover:text-primary"
                   >
-                    {link}
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -103,12 +103,12 @@ export default function Footer() {
             <h3 className="mb-4 font-semibold text-white">Quick Links</h3>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
-                <li key={link}>
+                <li key={link.label}>
                   <Link
-                    href="#"
+                    href={link.href}
                     className="text-gray-400 hover:text-primary"
                   >
-                    {link}
+                    {link.label}
                   </Link>
                 </li>
               ))}

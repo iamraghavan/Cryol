@@ -37,6 +37,12 @@ const formSchema = z.object({
   }),
 });
 
+// Determine if the context is a page with dark form elements
+const isDarkForm = () => {
+    if(typeof window === 'undefined') return false;
+    return window.location.pathname.startsWith('/contact') ? false : true;
+}
+
 export function QuickEnquiryForm() {
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -47,6 +53,8 @@ export function QuickEnquiryForm() {
     },
   });
 
+  const darkForm = isDarkForm();
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     toast({
@@ -56,6 +64,13 @@ export function QuickEnquiryForm() {
     form.reset();
   }
 
+  const labelClass = darkForm ? 'text-white' : '';
+  const inputClass = darkForm ? 'bg-white/20 border-white/30 text-white placeholder:text-gray-400 focus:ring-primary' : 'bg-background';
+  const phoneInputClass = darkForm ? 'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm bg-white/20 border-white/30 text-white [&_input]:bg-transparent [&_input]:text-white [&_input]:placeholder:text-gray-400 [&_select]:bg-gray-800' : 'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm';
+  const selectTriggerClass = darkForm ? 'bg-white/20 border-white/30 text-white placeholder:text-gray-400 focus:ring-primary' : '';
+  const selectContentClass = darkForm ? 'bg-gray-800 text-white border-gray-700' : '';
+
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -64,9 +79,9 @@ export function QuickEnquiryForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white">Name *</FormLabel>
+              <FormLabel className={labelClass}>Name *</FormLabel>
               <FormControl>
-                <Input placeholder="John Doe" {...field} className="bg-white/20 border-white/30 text-white placeholder:text-gray-400 focus:ring-primary" />
+                <Input placeholder="John Doe" {...field} className={inputClass} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -78,14 +93,14 @@ export function QuickEnquiryForm() {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white">Phone Number *</FormLabel>
+              <FormLabel className={labelClass}>Phone Number *</FormLabel>
                 <FormControl>
                   <PhoneInput
                     international
                     defaultCountry="IN"
                     placeholder="Enter phone number"
                     {...field}
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm bg-white/20 border-white/30 text-white [&_input]:bg-transparent [&_input]:text-white [&_input]:placeholder:text-gray-400 [&_select]:bg-gray-800"
+                    className={phoneInputClass}
                   />
                 </FormControl>
               <FormMessage className="text-red-400">{form.formState.errors.phone?.message}</FormMessage>
@@ -93,20 +108,19 @@ export function QuickEnquiryForm() {
           )}
         />
         
-
         <FormField
           control={form.control}
           name="department"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white">Select Department to Contact</FormLabel>
+              <FormLabel className={labelClass}>Select Department to Contact</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger className="bg-white/20 border-white/30 text-white placeholder:text-gray-400 focus:ring-primary">
+                  <SelectTrigger className={selectTriggerClass}>
                     <SelectValue placeholder="Select a department" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent className="bg-gray-800 text-white border-gray-700">
+                <SelectContent className={selectContentClass}>
                   <SelectItem value="application-development">Application Development</SelectItem>
                   <SelectItem value="cloud-services">Cloud Services</SelectItem>
                   <SelectItem value="cyber-forensics">Cyber Forensics</SelectItem>

@@ -4,16 +4,32 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Search } from 'lucide-react';
+import { Menu, Search, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const NAV_LINKS = [
-  { href: '#', label: 'Home' },
-  { href: '#about', label: 'About Us' },
-  { href: '#services', label: 'Services' },
-  { href: '#', label: 'Case Studies' },
-  { href: '#', label: 'Blog' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About Us' },
+  {
+    href: '/services',
+    label: 'Services',
+    subLinks: [
+      { href: '/services/application-development', label: 'Application Development' },
+      { href: '/services/cloud-services', label: 'Cloud Services' },
+      { href: '/services/cyber-security', label: 'Cyber Security' },
+      { href: '/services/cyber-forensics', label: 'Cyber Forensics' },
+      { href: '/services/digital-marketing', label: 'Digital Marketing' },
+    ],
+  },
+  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export default function Header() {
@@ -22,20 +38,37 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-gray-900 text-white">
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
-        <Link href="#" className="mr-6 flex items-center space-x-2">
+        <Link href="/" className="mr-6 flex items-center space-x-2">
           <Image src="/assets/img/Cryol_White.svg" alt="Cryol Logo" width={100} height={40} />
         </Link>
 
         <nav className="hidden md:flex md:items-center md:gap-6 text-sm font-medium">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="transition-colors hover:text-primary"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) =>
+            link.subLinks ? (
+              <DropdownMenu key={link.label}>
+                <DropdownMenuTrigger className="flex items-center gap-1 transition-colors hover:text-primary focus:outline-none">
+                  {link.label} <ChevronDown className="h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-gray-800 text-white border-gray-700">
+                  {link.subLinks.map((subLink) => (
+                    <DropdownMenuItem key={subLink.label} asChild>
+                      <Link href={subLink.href} className="hover:!bg-primary/20 hover:!text-white">
+                        {subLink.label}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="transition-colors hover:text-primary"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -45,7 +78,7 @@ export default function Header() {
           </Button>
 
           <Button asChild className="hidden md:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground">
-            <Link href="#contact">Get a Free Consultation</Link>
+            <Link href="/contact">Get a Free Consultation</Link>
           </Button>
 
           <Sheet open={isMenuOpen} onOpenChange={setMenuOpen}>
@@ -57,12 +90,12 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="bg-gray-900 text-white">
               <div className="flex flex-col gap-6 p-6">
-                 <Link href="#" className="flex items-center space-x-2">
+                 <Link href="/" className="flex items-center space-x-2">
                     <Image src="/assets/img/Cryol_White.svg" alt="Cryol Logo" width={120} height={50} />
                  </Link>
                 <nav className="flex flex-col gap-4">
                   {NAV_LINKS.map((link) => (
-                    <Link
+                     <Link
                       key={link.label}
                       href={link.href}
                       className="text-lg font-medium transition-colors hover:text-primary"
@@ -74,7 +107,7 @@ export default function Header() {
                 </nav>
                 <div className="flex flex-col gap-4">
                    <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => setMenuOpen(false)}>
-                      <Link href="#contact">Get a Free Consultation</Link>
+                      <Link href="/contact">Get a Free Consultation</Link>
                    </Button>
                    <Button variant="outline" className="border-gray-700 hover:bg-gray-800">
                       <Search className="mr-2 h-4 w-4" /> Search
