@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, Search } from 'lucide-react';
+import Image from 'next/image';
 
 const NAV_LINKS = [
   { href: '#', label: 'Home' },
@@ -19,10 +20,10 @@ export default function Header() {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-gray-900 text-white backdrop-blur supports-[backdrop-filter]:bg-gray-900/60">
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
         <Link href="#" className="mr-6 flex items-center space-x-2">
-          <span className="text-2xl font-bold text-primary">Cryol</span>
+          <Image src="/Cryol__White.svg" alt="Cryol Logo" width={100} height={40} />
         </Link>
 
         <nav className="hidden md:flex md:items-center md:gap-6 text-sm font-medium">
@@ -30,7 +31,7 @@ export default function Header() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-foreground/60 transition-colors hover:text-foreground/80"
+              className="transition-colors hover:text-primary"
             >
               {link.label}
             </Link>
@@ -38,33 +39,33 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" className="hidden md:inline-flex">
+          <Button variant="ghost" size="icon" className="hidden md:inline-flex hover:bg-gray-800">
             <Search className="h-5 w-5" />
             <span className="sr-only">Search</span>
           </Button>
 
-          <Button asChild className="hidden md:inline-flex">
+          <Button asChild className="hidden md:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground">
             <Link href="#contact">Get a Free Consultation</Link>
           </Button>
 
           <Sheet open={isMenuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
+              <Button variant="ghost" size="icon" className="md:hidden hover:bg-gray-800">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle Menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right">
+            <SheetContent side="right" className="bg-gray-900 text-white">
               <div className="flex flex-col gap-6 p-6">
-                <Link href="#" className="flex items-center space-x-2">
-                  <span className="text-2xl font-bold text-primary">Cryol</span>
-                </Link>
+                 <Link href="#" className="flex items-center space-x-2">
+                    <Image src="/Cryol__White.svg" alt="Cryol Logo" width={120} height={50} />
+                 </Link>
                 <nav className="flex flex-col gap-4">
                   {NAV_LINKS.map((link) => (
                     <Link
                       key={link.label}
                       href={link.href}
-                      className="text-lg font-medium text-foreground/80 transition-colors hover:text-foreground"
+                      className="text-lg font-medium transition-colors hover:text-primary"
                       onClick={() => setMenuOpen(false)}
                     >
                       {link.label}
@@ -72,10 +73,10 @@ export default function Header() {
                   ))}
                 </nav>
                 <div className="flex flex-col gap-4">
-                   <Button asChild>
-                      <Link href="#contact" onClick={() => setMenuOpen(false)}>Get a Free Consultation</Link>
+                   <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => setMenuOpen(false)}>
+                      <Link href="#contact">Get a Free Consultation</Link>
                    </Button>
-                   <Button variant="outline">
+                   <Button variant="outline" className="border-gray-700 hover:bg-gray-800">
                       <Search className="mr-2 h-4 w-4" /> Search
                    </Button>
                 </div>

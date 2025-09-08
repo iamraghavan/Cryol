@@ -62,9 +62,9 @@ export function QuickEnquiryForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name *</FormLabel>
+              <FormLabel className="text-white">Name *</FormLabel>
               <FormControl>
-                <Input placeholder="John Doe" {...field} />
+                <Input placeholder="John Doe" {...field} className="bg-white/20 border-white/30 text-white placeholder:text-gray-400 focus:ring-primary" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -72,9 +72,9 @@ export function QuickEnquiryForm() {
         />
 
         <FormItem>
-          <FormLabel>Phone Number *</FormLabel>
+          <FormLabel className="text-white">Phone Number *</FormLabel>
           <div className="flex">
-            <span className="inline-flex items-center rounded-l-md border border-r-0 border-input bg-secondary px-3 text-muted-foreground">
+            <span className="inline-flex items-center rounded-l-md border border-r-0 border-input bg-white/30 px-3 text-white">
               +91
             </span>
             <FormField
@@ -85,14 +85,14 @@ export function QuickEnquiryForm() {
                   <Input
                     type="tel"
                     placeholder="9876543210"
-                    className="rounded-l-none"
+                    className="rounded-l-none bg-white/20 border-white/30 text-white placeholder:text-gray-400 focus:ring-primary"
                     {...field}
                   />
                 </FormControl>
               )}
             />
           </div>
-          <FormMessage>{form.formState.errors.phone?.message}</FormMessage>
+          <FormMessage className="text-red-400">{form.formState.errors.phone?.message}</FormMessage>
         </FormItem>
 
         <FormField
@@ -100,14 +100,14 @@ export function QuickEnquiryForm() {
           name="department"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Select Department to Contact</FormLabel>
+              <FormLabel className="text-white">Select Department to Contact</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white/20 border-white/30 text-white placeholder:text-gray-400 focus:ring-primary">
                     <SelectValue placeholder="Select a department" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent>
+                <SelectContent className="bg-gray-800 text-white border-gray-700">
                   <SelectItem value="sales">Sales</SelectItem>
                   <SelectItem value="support">Support</SelectItem>
                   <SelectItem value="development">Development</SelectItem>
@@ -118,7 +118,7 @@ export function QuickEnquiryForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" variant="outline">Submit</Button>
+        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-3 rounded-xl transition-transform duration-300 hover:scale-105">Submit</Button>
       </form>
     </Form>
   );

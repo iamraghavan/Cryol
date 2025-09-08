@@ -79,27 +79,30 @@ export default function Services() {
             </p>
           </div>
         </div>
-        <div className="mx-auto mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3" style={{ perspective: '1000px' }}>
           {services.map((service) => (
             <Card
               key={service.title}
-              className="flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl"
+              className="flex flex-col overflow-hidden transition-transform duration-500 ease-in-out hover:shadow-xl rounded-2xl group"
+              style={{ transformStyle: 'preserve-3d' }}
             >
-              <CardHeader className="flex flex-row items-center gap-4">
-                <div className="rounded-full bg-primary/10 p-3">
-                  <service.icon className="h-8 w-8 text-primary" />
+              <div className="transition-transform duration-500 group-hover:rotate-y-6 group-hover:rotate-x-3 group-hover:scale-105">
+                <CardHeader className="flex flex-row items-center gap-4">
+                  <div className="rounded-full bg-primary/10 p-3">
+                    <service.icon className="h-8 w-8 text-primary" />
+                  </div>
+                  <CardTitle>{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <CardDescription>{service.description}</CardDescription>
+                </CardContent>
+                <div className="bg-secondary/50 p-4">
+                  <Button asChild variant="link" className="text-primary">
+                    <Link href={service.link}>
+                      Discover Now &rarr;
+                    </Link>
+                  </Button>
                 </div>
-                <CardTitle>{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <CardDescription>{service.description}</CardDescription>
-              </CardContent>
-              <div className="bg-secondary/50 p-4">
-                <Button asChild variant="link" className="text-primary">
-                  <Link href={service.link}>
-                    Discover Now &rarr;
-                  </Link>
-                </Button>
               </div>
             </Card>
           ))}

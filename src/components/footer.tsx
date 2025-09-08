@@ -10,6 +10,7 @@ import {
   Globe,
   Play,
 } from 'lucide-react';
+import Image from 'next/image';
 
 const socialLinks = [
   { icon: Facebook, href: '#' },
@@ -43,35 +44,35 @@ const supportLinks = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-secondary text-secondary-foreground">
+    <footer id="contact" className="bg-gray-900 text-gray-300">
       <div className="container mx-auto px-4 py-12 md:px-6 lg:py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <Link href="#" className="text-2xl font-bold text-primary">
-              Cryol
+            <Link href="#" className="flex items-center">
+              <Image src="/Cryol__White.svg" alt="Cryol Logo" width={100} height={40} />
             </Link>
-            <p className="text-muted-foreground">
+            <p className="text-gray-400">
               Secure, Innovative, and Growth-Driven IT Solutions
             </p>
-            <address className="not-italic text-muted-foreground">
+            <address className="not-italic text-gray-400">
               <p className="flex items-start">
-                <MapPin className="mr-2 mt-1 h-4 w-4 shrink-0" />
+                <MapPin className="mr-2 mt-1 h-4 w-4 shrink-0 text-primary" />
                 20/22 kannappan street, otteri, chennai 600012
               </p>
               <p className="flex items-center">
-                <Mail className="mr-2 h-4 w-4" />
+                <Mail className="mr-2 h-4 w-4 text-primary" />
                 <a href="mailto:contact@cryol.com" className="hover:text-primary">
                   contact@cryol.com
                 </a>
               </p>
               <p className="flex items-center">
-                <Phone className="mr-2 h-4 w-4" />
+                <Phone className="mr-2 h-4 w-4 text-primary" />
                 <a href="tel:+911234520120" className="hover:text-primary">
                   (+91) 12345 20120
                 </a>
               </p>
               <p className="flex items-center">
-                <Globe className="mr-2 h-4 w-4" />
+                <Globe className="mr-2 h-4 w-4 text-primary" />
                 <a
                   href="https://www.cryol.com"
                   target="_blank"
@@ -84,13 +85,13 @@ export default function Footer() {
             </address>
           </div>
           <div>
-            <h3 className="mb-4 font-semibold">Our Services</h3>
+            <h3 className="mb-4 font-semibold text-white">Our Services</h3>
             <ul className="space-y-2">
               {serviceLinks.map((link) => (
                 <li key={link}>
                   <Link
                     href="#"
-                    className="text-muted-foreground hover:text-primary"
+                    className="text-gray-400 hover:text-primary"
                   >
                     {link}
                   </Link>
@@ -99,13 +100,13 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-4 font-semibold">Quick Links</h3>
+            <h3 className="mb-4 font-semibold text-white">Quick Links</h3>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link}>
                   <Link
                     href="#"
-                    className="text-muted-foreground hover:text-primary"
+                    className="text-gray-400 hover:text-primary"
                   >
                     {link}
                   </Link>
@@ -114,13 +115,13 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-4 font-semibold">Support</h3>
+            <h3 className="mb-4 font-semibold text-white">Support</h3>
             <ul className="space-y-2">
               {supportLinks.map((link) => (
                 <li key={link}>
                   <Link
                     href="#"
-                    className="text-muted-foreground hover:text-primary"
+                    className="text-gray-400 hover:text-primary"
                   >
                     {link}
                   </Link>
@@ -128,16 +129,16 @@ export default function Footer() {
               ))}
             </ul>
             <div className="mt-4">
-              <Link href="#" className="flex items-center gap-2 text-muted-foreground hover:text-primary">
+              <Link href="#" className="flex items-center gap-2 text-gray-400 hover:text-primary">
                 <Play /> Play Store
               </Link>
             </div>
           </div>
         </div>
       </div>
-      <div className="border-t">
+      <div className="border-t border-gray-800">
         <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row md:px-6">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-gray-500">
             © {new Date().getFullYear()} Cryol. All Rights Reserved.
           </p>
           <div className="flex space-x-4">
@@ -145,7 +146,7 @@ export default function Footer() {
               <Link
                 key={index}
                 href={href}
-                className="text-muted-foreground hover:text-primary"
+                className="text-gray-400 hover:text-primary"
               >
                 <Icon className="h-5 w-5" />
                 <span className="sr-only">Social media link</span>
