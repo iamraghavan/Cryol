@@ -35,6 +35,7 @@ const formSchema = z.object({
   fullName: z.string().min(2, { message: 'Full name must be at least 2 characters.' }),
   workEmail: z.string().email({ message: 'Please enter a valid work email.' }),
   phone: z.string().min(10, { message: 'Please enter a valid phone number.' }),
+  location: z.string().min(2, { message: 'Please enter a valid location.' }),
   services: z.array(z.string()).refine((value) => value.some((item) => item), {
     message: 'You have to select at least one service.',
   }),
@@ -50,6 +51,7 @@ export function QuoteForm() {
       fullName: '',
       workEmail: '',
       phone: '',
+      location: '',
       services: [],
       message: '',
     },
@@ -95,26 +97,42 @@ export function QuoteForm() {
             )}
           />
         </div>
+        
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+                <FormItem>
+                <FormLabel>Phone Number *</FormLabel>
+                <FormControl>
+                    <PhoneInput
+                    international
+                    defaultCountry="IN"
+                    placeholder="Enter your phone number"
+                    {...field}
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                    />
+                </FormControl>
+                <FormMessage />
+                </FormItem>
+            )}
+            />
+            <FormField
+            control={form.control}
+            name="location"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Location *</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter your location" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
-        <FormField
-          control={form.control}
-          name="phone"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Phone Number *</FormLabel>
-              <FormControl>
-                <PhoneInput
-                  international
-                  defaultCountry="IN"
-                  placeholder="Enter your phone number"
-                  {...field}
-                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
 
         <FormField
           control={form.control}
