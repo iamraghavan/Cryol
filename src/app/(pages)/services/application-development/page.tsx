@@ -32,7 +32,7 @@ export default function AppDevPage() {
     title: 'Application Development',
     description: 'We build custom, scalable, and secure applications to meet your business needs. From web to mobile, our team delivers high-quality solutions that streamline operations and enhance user experiences.',
     icon: AppWindow,
-    imageUrl: 'https://picsum.photos/1200/800',
+    imageUrl: 'https://img.freepik.com/free-photo/representation-user-experience-interface-design_23-2150169863.jpg',
     imageHint: 'software development'
   };
 
