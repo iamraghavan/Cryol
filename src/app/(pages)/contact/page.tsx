@@ -63,6 +63,25 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <section className="w-full pb-12 md:pb-24 lg:pb-32">
+        <div className="container mx-auto px-4 md:px-6">
+           <h2 className="text-center text-3xl font-bold tracking-tight sm:text-4xl font-headline mb-8">
+              Find Us Here
+            </h2>
+          <div className="overflow-hidden rounded-2xl shadow-2xl">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.427845345919!2d80.24151447479719!3d13.072175913256956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52660a95555555%3A0x1634195155134e77!2sKannappan%20St%2C%20Otteri%2C%20Chennai%2C%20Tamil%20Nadu%20600012%2C%20India!5e0!3m2!1sen!2sus!4v1718886635569!5m2!1sen!2sus"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
