@@ -28,7 +28,6 @@ const services = [
   { id: 'network', label: 'External Network Pentesting' },
   { id: 'cloud', label: 'Cloud security assessment' },
   { id: 'mobile', label: 'Mobile app pentesting' },
-  { id: 'partner', label: 'I want to partner with qualysec' },
   { id: 'iot', label: 'IoT Pentesting' },
   { id: 'others', label: 'Others' },
 ];
