@@ -132,7 +132,7 @@ export function QuickEnquiryForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-3 rounded-xl transition-transform duration-300 hover:scale-105">Submit</Button>
+        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-3 rounded-xl">Submit</Button>
       </form>
     </Form>
   );

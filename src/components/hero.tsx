@@ -33,7 +33,7 @@ export default function Hero() {
               technology solutions to drive growth, innovation, and efficiency.
             </p>
           </div>
-          <Card className="shadow-2xl bg-white/10 backdrop-blur-lg border border-white/20 text-white rounded-2xl transform transition-transform duration-500 hover:scale-105 hover:shadow-cyan-500/50" style={{'--tw-shadow-color': 'hsl(var(--primary))'}}>
+          <Card className="bg-white/10 backdrop-blur-lg border border-white/20 text-white rounded-2xl">
             <CardHeader>
               <CardTitle className="text-white">Quick Enquiry</CardTitle>
               <CardDescription className="text-gray-300">
