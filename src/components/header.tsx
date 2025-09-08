@@ -3,7 +3,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import { Menu, Search, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import {
@@ -89,6 +95,9 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="bg-gray-900 text-white">
+              <SheetHeader className="sr-only">
+                <SheetTitle>Mobile Menu</SheetTitle>
+              </SheetHeader>
               <div className="flex flex-col gap-6 p-6">
                  <Link href="/" className="flex items-center space-x-2">
                     <Image src="/assets/img/cryol___logo__white.png" alt="Cryol Logo" width={120} height={50} />
