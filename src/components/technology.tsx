@@ -64,7 +64,7 @@ export default function Technology() {
             <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
               OUR TECHNOLOGY
             </div>
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl font-headline">
               Innovative Solutions
             </h2>
             <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">

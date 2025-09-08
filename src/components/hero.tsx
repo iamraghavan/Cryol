@@ -25,7 +25,7 @@ export default function Hero() {
       <div className="container relative z-10 mx-auto px-4 md:px-6 hero-content">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="flex flex-col justify-center space-y-4">
-            <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-shadow-lg font-headline">
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-shadow-lg font-headline">
               Expert IT Solutions
             </h1>
             <p className="max-w-[600px] text-gray-200 md:text-xl text-shadow">

@@ -45,7 +45,7 @@ export default function BlogPage() {
       <main className="flex-1 py-12 md:py-24 lg:py-32">
         <div className="container mx-auto px-4 md:px-6">
           <div className="space-y-4 text-center">
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">From Our Blog</h1>
+            <h1 className="text-3xl font-bold tracking-tight sm:text-5xl font-headline">From Our Blog</h1>
             <p className="max-w-[900px] mx-auto text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               Latest industry insights, articles, and news from our team of experts.
             </p>

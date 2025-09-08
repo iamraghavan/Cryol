@@ -19,7 +19,7 @@ export default function CyberSecurityPage() {
                     <ShieldCheck className="h-4 w-4" />
                     Our Services
                   </div>
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">
+                  <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl font-headline">
                     Cyber Security
                   </h1>
                 </div>
