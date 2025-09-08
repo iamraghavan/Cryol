@@ -5,6 +5,8 @@ import {
   NodeJsIcon,
   AzureIcon,
   PythonIcon,
+  GolangIcon,
+  LinuxIcon,
 } from './icons';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
@@ -17,6 +19,10 @@ const technologies = [
   { name: 'Node.js', icon: NodeJsIcon },
   { name: 'Azure', icon: AzureIcon },
   { name: 'Python', icon: PythonIcon },
+  { name: 'Go', icon: GolangIcon },
+  { name: 'Linux Foundation', icon: LinuxIcon },
+  { name: 'Arch Linux', icon: LinuxIcon },
+  { name: 'Kali Linux', icon: LinuxIcon },
 ];
 
 export default function Technology() {
@@ -68,8 +74,7 @@ export default function Technology() {
               Innovative Solutions
             </h2>
             <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              We leverage cutting-edge technologies like BurpSuite, Node.js, Azure,
-              and Python to deliver secure, scalable solutions for Application
+              We leverage cutting-edge technologies to deliver secure, scalable solutions for Application
               Development, Cloud Services, Cyber Security, and more.
             </p>
           </div>
@@ -81,7 +86,7 @@ export default function Technology() {
                   <div className="flex h-20 w-20 items-center justify-center rounded-full bg-secondary transition-all hover:bg-primary/10">
                     <Icon className="h-10 w-10 text-primary" />
                   </div>
-                  <span className="font-medium">{name}</span>
+                  <span className="font-medium text-center">{name}</span>
                 </div>
               ))}
             </div>
