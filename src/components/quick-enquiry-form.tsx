@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -37,14 +38,17 @@ const formSchema = z.object({
   }),
 });
 
-// Determine if the context is a page with dark form elements
-const isDarkForm = () => {
-    if(typeof window === 'undefined') return false;
-    return window.location.pathname.startsWith('/contact') ? false : true;
-}
 
 export function QuickEnquiryForm() {
+  const [darkForm, setDarkForm] = useState(false);
   const { toast } = useToast();
+
+  useEffect(() => {
+    // This code now runs only on the client, after the initial render.
+    const isDark = window.location.pathname.startsWith('/contact') ? false : true;
+    setDarkForm(isDark);
+  }, []);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -52,8 +56,6 @@ export function QuickEnquiryForm() {
       phone: '',
     },
   });
-
-  const darkForm = isDarkForm();
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
