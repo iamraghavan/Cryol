@@ -22,7 +22,7 @@ const testimonials = [
     role: 'Project Vendor',
     testimonial:
       'Working with Cryol has been a game-changer. Their expertise in application development and commitment to deadlines is unparalleled. They delivered a robust solution that exceeded our expectations.',
-    avatar: 'https://i.pravatar.cc/150?u=ajay',
+    avatar: 'https://api.dicebear.com/8.x/adventurer/svg?seed=Ajay',
     aiHint: 'man portrait',
   },
   {
@@ -30,7 +30,7 @@ const testimonials = [
     role: 'Director, JAY VEE Groups',
     testimonial:
       'Cryol developed a comprehensive business website for us that has significantly improved our online presence. Their team is professional, creative, and highly skilled. I highly recommend their services.',
-    avatar: 'https://i.pravatar.cc/150?u=udayakumar',
+    avatar: 'https://api.dicebear.com/8.x/adventurer/svg?seed=Udayakumar',
     aiHint: 'businessman portrait',
   },
   {
@@ -38,7 +38,7 @@ const testimonials = [
     role: 'CEO, Tech Innovations Ltd.',
     testimonial:
       "Cryol's cloud services have been instrumental in our growth. Their team is knowledgeable, responsive, and has provided us with a scalable and secure infrastructure that we can rely on.",
-    avatar: 'https://i.pravatar.cc/150?u=priya',
+    avatar: 'https://api.dicebear.com/8.x/avataaars/svg?seed=Priya',
     aiHint: 'businesswoman portrait',
   },
   {
@@ -46,7 +46,7 @@ const testimonials = [
     role: 'Marketing Head, E-Shop Global',
     testimonial:
       'The digital marketing campaign designed by Cryol boosted our online visibility and lead generation by over 60%. An exceptional team with a data-driven and results-oriented approach.',
-    avatar: 'https://i.pravatar.cc/150?u=rahul',
+    avatar: 'https://api.dicebear.com/8.x/big-smile/svg?seed=Rahul',
     aiHint: 'man smiling',
   },
 ];
