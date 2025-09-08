@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { Card } from '@/components/ui/card';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -58,16 +57,14 @@ export default function About() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div ref={imageRef} className="flex items-center justify-center">
-            <Card className="overflow-hidden rounded-xl shadow-lg">
-              <Image
-                alt="Developer activity"
-                className="aspect-video w-full object-cover"
-                height={450}
-                src="/assets/img/Developer--activity-pana.svg"
-                width={800}
-                data-ai-hint="office collaboration"
-              />
-            </Card>
+            <Image
+              alt="Developer activity"
+              className="aspect-video w-full object-contain"
+              height={450}
+              src="/assets/img/Developer--activity-pana.svg"
+              width={800}
+              data-ai-hint="office collaboration"
+            />
           </div>
           <div ref={textRef} className="flex flex-col justify-center space-y-6">
             <div className="space-y-2">
