@@ -49,7 +49,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
             <Link href="/" className="flex items-center">
-              <Image src="/assets/img/cryol_w.webp" alt="Cryol Logo" width={100} height={40} />
+              <Image src="/assets/img/cryol___logo__white.png" alt="Cryol Logo" width={100} height={40} />
             </Link>
             <p className="text-gray-400">
               Secure, Innovative, and Growth-Driven IT Solutions
