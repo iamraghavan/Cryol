@@ -75,13 +75,6 @@ export function QuickEnquiryForm() {
     recaptchaRef.current?.reset();
   }
 
-  const labelClass = isHeroForm ? 'text-white' : '';
-  const inputClass = isHeroForm ? 'bg-white/20 border-white/30 text-white placeholder:text-gray-400 focus:ring-primary' : 'bg-background';
-  const phoneInputClass = isHeroForm ? 'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm bg-white/20 border-white/30 text-white [&_input]:bg-transparent [&_input]:text-white [&_input]:placeholder:text-gray-400 [&_select]:bg-gray-800' : 'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm';
-  const selectTriggerClass = isHeroForm ? 'bg-white/20 border-white/30 text-white placeholder:text-gray-400 focus:ring-primary' : '';
-  const selectContentClass = isHeroForm ? 'bg-gray-800 text-white border-gray-700' : '';
-
-
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -90,9 +83,9 @@ export function QuickEnquiryForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className={labelClass}>Name *</FormLabel>
+              <FormLabel>Name *</FormLabel>
               <FormControl>
-                <Input placeholder="John Doe" {...field} className={inputClass} />
+                <Input placeholder="John Doe" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -104,9 +97,9 @@ export function QuickEnquiryForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className={labelClass}>Email *</FormLabel>
+              <FormLabel>Email *</FormLabel>
               <FormControl>
-                <Input placeholder="john.doe@example.com" {...field} className={inputClass} />
+                <Input placeholder="john.doe@example.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -118,17 +111,17 @@ export function QuickEnquiryForm() {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className={labelClass}>Phone Number *</FormLabel>
+              <FormLabel>Phone Number *</FormLabel>
                 <FormControl>
                   <PhoneInput
                     international
                     defaultCountry="IN"
                     placeholder="Enter phone number"
                     {...field}
-                    className={phoneInputClass}
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                   />
                 </FormControl>
-              <FormMessage className="text-red-400">{form.formState.errors.phone?.message}</FormMessage>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -138,14 +131,14 @@ export function QuickEnquiryForm() {
           name="department"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className={labelClass}>Select Department to Contact</FormLabel>
+              <FormLabel>Select Department to Contact</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger className={selectTriggerClass}>
+                  <SelectTrigger>
                     <SelectValue placeholder="Select a department" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent className={selectContentClass}>
+                <SelectContent>
                   <SelectItem value="application-development">Application Development</SelectItem>
                   <SelectItem value="cloud-services">Cloud Services</SelectItem>
                   <SelectItem value="cyber-forensics">Cyber Forensics</SelectItem>
