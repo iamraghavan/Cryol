@@ -13,11 +13,12 @@ export default function Hero() {
     <section className="relative w-full h-[90vh] flex items-center justify-center text-white">
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://onlinedegrees.sandiego.edu/wp-content/uploads/2022/01/USD-Cyber-How-to-Become-a-Cybersecurity-Specialist-Career-Salary-Guide_cover.jpg"
+          src="/hero-background.jpg"
           alt="Cybersecurity background"
           fill
           style={{objectFit: 'cover'}}
           quality={100}
+          data-ai-hint="cybersecurity abstract"
         />
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
       </div>
