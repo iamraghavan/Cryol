@@ -158,9 +158,9 @@ export default function CyberSecurityPage() {
                         alt="Cybersecurity team"
                         className="rounded-xl object-cover shadow-2xl"
                         height={500}
-                        src="https://picsum.photos/600/500"
+                        src="https://img.freepik.com/free-photo/girl-hacker-wearing-glasses-hoodie-while-stealing-personal-data-with-her-team_482257-20610.jpg"
                         width={600}
-                        data-ai-hint="security team meeting"
+                        data-ai-hint="hacker security"
                     />
                 </div>
             </div>
