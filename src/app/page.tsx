@@ -7,6 +7,7 @@ import Header from '@/components/header';
 import Hero from '@/components/hero';
 import Services from '@/components/services';
 import Technology from '@/components/technology';
+import Testimonials from '@/components/testimonials';
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -24,7 +25,7 @@ export default function Home() {
     );
 
     // Fade in sections on scroll
-    const sections = ['#services', '#about', '#technology', '#cta'];
+    const sections = ['#services', '#about', '#technology', '#testimonials', '#cta'];
     sections.forEach((section) => {
       gsap.fromTo(
         section,
@@ -57,6 +58,7 @@ export default function Home() {
         <Services />
         <About />
         <Technology />
+        <Testimonials />
         <Cta />
       </main>
       <Footer />
