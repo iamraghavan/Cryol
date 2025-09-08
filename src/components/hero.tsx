@@ -13,7 +13,7 @@ export default function Hero() {
     <section className="relative w-full h-[90vh] flex items-center justify-center text-white">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/hero-background.jpg"
+          src="/H-Cybersecurity.webp"
           alt="Cybersecurity background"
           fill
           style={{objectFit: 'cover'}}
