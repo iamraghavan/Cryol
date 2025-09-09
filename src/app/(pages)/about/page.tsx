@@ -105,7 +105,7 @@ export default function AboutPage() {
                 alt="Our Team"
                 className="rounded-xl object-cover shadow-2xl"
                 height={500}
-                src="https://picsum.photos/600/500"
+                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGVhbXxlbnwwfHx8fDE3NTc0MzI4NjN8MA&ixlib=rb-4.1.0&q=80&w=1080"
                 width={600}
                 data-ai-hint="team working"
               />
