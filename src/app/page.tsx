@@ -11,7 +11,7 @@ import Testimonials from '@/components/testimonials';
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-// 10
+
 
 gsap.registerPlugin(ScrollTrigger);
 
