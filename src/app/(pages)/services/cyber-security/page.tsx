@@ -4,16 +4,18 @@ import {
   Network,
   CloudCog,
   Smartphone,
-  Router,
   Target,
-  FlaskConical,
   FileText,
   ShieldAlert,
+  ListChecks,
+  Repeat,
+  Presentation,
 } from 'lucide-react';
 import ServicePage from '@/components/service-page';
 import { QuoteForm } from '@/components/quote-form';
 import { Card } from '@/components/ui/card';
 import { Check } from 'lucide-react';
+import Image from 'next/image';
 
 const features = [
   {
@@ -41,7 +43,7 @@ const features = [
       'Protect your cloud infrastructure with our in-depth security assessments for AWS, Azure, and GCP.',
   },
   {
-    icon: Router,
+    icon: FileText,
     title: 'Mobile App Pentesting',
     description:
       'We analyze your iOS and Android applications to find and eliminate security weaknesses.',
@@ -56,24 +58,34 @@ const features = [
 
 const methodologySteps = [
     {
-        icon: Target,
-        title: "Planning & Scoping",
+        icon: ListChecks,
+        title: "1. Planning & Scoping",
         description: "We work with you to define the scope, objectives, and rules of engagement for the penetration test."
     },
     {
         icon: ScanLine,
-        title: "Reconnaissance & Scanning",
+        title: "2. Reconnaissance & Scanning",
         description: "Our team gathers intelligence and scans your systems to identify potential vulnerabilities and attack vectors."
     },
     {
-        icon: FlaskConical,
-        title: "Gaining Access & Exploitation",
+        icon: Target,
+        title: "3. Gaining Access & Exploitation",
         description: "We simulate a real attack by attempting to exploit the identified vulnerabilities to gain access to your systems."
     },
     {
         icon: FileText,
-        title: "Analysis & Reporting",
+        title: "4. Analysis & Reporting",
         description: "We provide a detailed report with our findings, risk analysis, and actionable recommendations for remediation."
+    },
+    {
+        icon: Repeat,
+        title: "5. Retesting",
+        description: "After you've implemented fixes, we retest to verify that the vulnerabilities have been successfully remediated."
+    },
+    {
+        icon: Presentation,
+        title: "6. Final Presentation",
+        description: "We present our findings and recommendations to your team, ensuring a clear understanding of your security posture."
     }
 ];
 
@@ -110,6 +122,9 @@ export default function CyberSecurityPage() {
       <section className="py-12 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center">
+             <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm font-medium text-primary mb-4">
+                Our Process
+              </div>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">
               Our Pentesting Methodology
             </h2>
@@ -117,7 +132,7 @@ export default function CyberSecurityPage() {
               We follow a structured and proven methodology to ensure thorough and effective penetration testing.
             </p>
           </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {methodologySteps.map((step, index) => (
               <Card key={index} className="text-center p-6 shadow-md">
                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-4">
@@ -154,7 +169,7 @@ export default function CyberSecurityPage() {
                     </ul>
                 </div>
                  <div className="flex items-center justify-center">
-                    <img
+                    <Image
                         alt="Cybersecurity team"
                         className="rounded-xl object-cover shadow-2xl"
                         height={500}

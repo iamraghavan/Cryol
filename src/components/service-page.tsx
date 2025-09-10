@@ -72,22 +72,23 @@ export default function ServicePage({
       <section className="w-full py-12 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center">
+            <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm font-medium text-primary mb-4">
+                Our Capabilities
+            </div>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">
               {featuresTitle}
             </h2>
           </div>
-          <div className="mx-auto mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2">
             {features.map((feature, index) => (
-              <Card key={index} className="text-center p-6 shadow-md hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                    <feature.icon className="h-8 w-8 text-primary" />
+              <Card key={index} className="p-6 shadow-md hover:shadow-lg transition-shadow flex items-start gap-6">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 shrink-0 mt-1">
+                    <feature.icon className="h-6 w-6 text-primary" />
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <h3 className="text-xl font-bold font-headline">{feature.title}</h3>
-                  <p className="mt-2 text-muted-foreground">{feature.description}</p>
-                </CardContent>
+                  <div>
+                    <h3 className="text-xl font-bold font-headline mb-2">{feature.title}</h3>
+                    <p className="text-muted-foreground">{feature.description}</p>
+                  </div>
               </Card>
             ))}
           </div>
