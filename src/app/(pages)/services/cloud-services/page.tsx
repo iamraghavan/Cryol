@@ -3,6 +3,22 @@ import Image from 'next/image';
 import ServicePage from '@/components/service-page';
 import { QuoteForm } from '@/components/quote-form';
 import { Card } from '@/components/ui/card';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Cloud Services',
+  description: 'Cryol offers expert cloud services in Chennai, including cloud migration, security, and managed services for AWS, Azure, and GCP. Optimize your infrastructure for performance and cost.',
+  keywords: ['cloud services chennai', 'aws services', 'azure services', 'gcp services', 'cloud migration', 'cloud security'],
+  alternates: {
+    canonical: '/services/cloud-services',
+  },
+  openGraph: {
+    title: 'Expert Cloud Services in Chennai | AWS, Azure, GCP | Cryol',
+    description: 'Leverage the power of the cloud with our secure, flexible, and scalable solutions for migration, management, and optimization.',
+    url: '/services/cloud-services',
+  },
+};
+
 
 const features = [
   {

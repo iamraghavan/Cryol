@@ -3,6 +3,22 @@ import Image from 'next/image';
 import ServicePage from '@/components/service-page';
 import { QuoteForm } from '@/components/quote-form';
 import { Card } from '@/components/ui/card';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Application Development Services',
+  description: 'Cryol provides custom application development services in Chennai. We build secure, scalable web and mobile applications to meet your business needs and enhance user experience.',
+  keywords: ['application development chennai', 'web development', 'mobile app development', 'custom software', 'api development'],
+  alternates: {
+    canonical: '/services/application-development',
+  },
+  openGraph: {
+    title: 'Custom Application Development Services in Chennai | Cryol',
+    description: 'Build powerful web and mobile applications with our expert development team. We deliver high-quality, scalable solutions.',
+    url: '/services/application-development',
+  },
+};
+
 
 const features = [
   {

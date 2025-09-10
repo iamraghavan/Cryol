@@ -8,6 +8,21 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Contact Us',
+  description: 'Get in touch with Cryol, a leading IT services company in Chennai. Contact us for application development, cloud solutions, and cybersecurity services. Visit our office or send us a message.',
+  alternates: {
+    canonical: '/contact',
+  },
+  openGraph: {
+    title: 'Contact Cryol | IT Services in Chennai',
+    description: 'Reach out to our team in Chennai for expert IT solutions. Let\'s discuss your project today.',
+    url: '/contact',
+  },
+};
+
 
 export default function ContactPage() {
   return (
@@ -75,6 +90,7 @@ export default function ContactPage() {
               allowFullScreen={true}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              title="Cryol Office Location on Google Maps"
             ></iframe>
           </div>
         </div>

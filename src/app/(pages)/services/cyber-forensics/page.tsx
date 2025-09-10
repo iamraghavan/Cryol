@@ -3,6 +3,21 @@ import Image from 'next/image';
 import ServicePage from '@/components/service-page';
 import { QuoteForm } from '@/components/quote-form';
 import { Card } from '@/components/ui/card';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Cyber Forensics Services',
+  description: 'Cryol offers professional cyber forensics services in Chennai. Our experts handle incident response, digital evidence recovery, and data breach analysis to support investigations.',
+  keywords: ['cyber forensics chennai', 'digital forensics', 'incident response', 'data breach analysis', 'e-discovery'],
+  alternates: {
+    canonical: '/services/cyber-forensics',
+  },
+  openGraph: {
+    title: 'Cyber Forensics and Incident Response in Chennai | Cryol',
+    description: 'When a security breach occurs, our expert digital investigation team uncovers evidence, determines impact, and supports recovery.',
+    url: '/services/cyber-forensics',
+  },
+};
 
 
 const features = [

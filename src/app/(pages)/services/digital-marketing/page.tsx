@@ -3,6 +3,22 @@ import Image from 'next/image';
 import ServicePage from '@/components/service-page';
 import { QuoteForm } from '@/components/quote-form';
 import { Card } from '@/components/ui/card';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Digital Marketing Services',
+  description: 'Boost your online presence with Cryol\'s digital marketing services in Chennai. We specialize in SEO, PPC, social media, and content marketing to drive growth and engagement.',
+  keywords: ['digital marketing chennai', 'seo services', 'ppc management', 'social media marketing', 'content marketing'],
+  alternates: {
+    canonical: '/services/digital-marketing',
+  },
+  openGraph: {
+    title: 'Data-Driven Digital Marketing in Chennai | Cryol',
+    description: 'Drive growth with our strategic digital marketing campaigns. We cover SEO, PPC, social media, and content marketing to reach your target audience.',
+    url: '/services/digital-marketing',
+  },
+};
+
 
 const features = [
   {

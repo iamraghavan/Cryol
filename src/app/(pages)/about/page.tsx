@@ -17,6 +17,20 @@ import Technology from '@/components/technology';
 import Cta from '@/components/cta';
 import Image from 'next/image';
 import { QuoteForm } from '@/components/quote-form';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Cryol',
+  description: 'Learn about Cryol\'s mission to empower organizations with data-driven, secure, and innovative digital solutions. Discover our approach and commitment to excellence in IT services.',
+  alternates: {
+    canonical: '/about',
+  },
+  openGraph: {
+    title: 'About Cryol | IT Solutions in Chennai',
+    description: 'Learn about Cryol\'s mission, vision, and commitment to delivering cutting-edge IT services in Chennai and beyond.',
+    url: '/about',
+  },
+};
 
 const features = [
   {

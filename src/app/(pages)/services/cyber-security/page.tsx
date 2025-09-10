@@ -16,6 +16,22 @@ import { QuoteForm } from '@/components/quote-form';
 import { Card } from '@/components/ui/card';
 import { Check } from 'lucide-react';
 import Image from 'next/image';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Cyber Security Services',
+  description: 'Cryol offers comprehensive cyber security services in Chennai. Protect your digital assets with our expert penetration testing, threat assessment, and 24/7 monitoring.',
+  keywords: ['cyber security chennai', 'penetration testing', 'vulnerability assessment', 'ethical hacking', 'network security'],
+  alternates: {
+    canonical: '/services/cyber-security',
+  },
+  openGraph: {
+    title: 'Cyber Security and Penetration Testing in Chennai | Cryol',
+    description: 'Protect your digital assets with our comprehensive cybersecurity services, including pentesting, threat assessment, and incident response.',
+    url: '/services/cyber-security',
+  },
+};
+
 
 const features = [
   {

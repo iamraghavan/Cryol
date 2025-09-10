@@ -1,5 +1,20 @@
 import { QuoteForm } from '@/components/quote-form';
 import Stats from '@/components/stats';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Get a Quote',
+  description: 'Request a personalized quote for Cryol\'s IT services in Chennai. Fill out our form for application development, cybersecurity, cloud services, and more. Get a free consultation today.',
+  alternates: {
+    canonical: '/get-a-quote',
+  },
+  openGraph: {
+    title: 'Get a Free Quote for IT Services in Chennai | Cryol',
+    description: 'Protect your business and drive growth. Request a personalized quote from our expert team in Chennai.',
+    url: '/get-a-quote',
+  },
+};
+
 
 export default function GetAQuotePage() {
   return (
