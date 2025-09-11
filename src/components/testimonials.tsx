@@ -33,22 +33,6 @@ const testimonials = [
     avatar: 'https://ui-avatars.com/api/?name=Udayakumar&background=random',
     aiHint: 'businessman portrait',
   },
-  {
-    name: 'Priya Sharma',
-    role: 'CEO, Tech Innovations Ltd.',
-    testimonial:
-      "Cryol's cloud services have been instrumental in our growth. Their team is knowledgeable, responsive, and has provided us with a scalable and secure infrastructure that we can rely on.",
-    avatar: 'https://ui-avatars.com/api/?name=Priya+Sharma&background=random',
-    aiHint: 'businesswoman portrait',
-  },
-  {
-    name: 'Rahul Verma',
-    role: 'Marketing Head, E-Shop Global',
-    testimonial:
-      'The digital marketing campaign designed by Cryol boosted our online visibility and lead generation by over 60%. An exceptional team with a data-driven and results-oriented approach.',
-    avatar: 'https://ui-avatars.com/api/?name=Rahul+Verma&background=random',
-    aiHint: 'man smiling',
-  },
 ];
 
 export default function Testimonials() {
