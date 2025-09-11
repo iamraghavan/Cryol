@@ -4,7 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 
 const title = 'Cryol - Application Development, Cloud Services, Cyber Security, Cyber Forensics & Digital Marketing in Chennai';
 const description = 'Cryol offers top-notch Application Development, Cloud Services, Cyber Security, Cyber Forensics, and Digital Marketing in Chennai. Discover how we can help your business grow and protect your digital assets.';
-const url = 'https://www.cryol.com';
+const url = 'https://www.cryol.in';
 
 export const metadata: Metadata = {
   title: {
@@ -55,10 +55,10 @@ const LocalBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Cryol",
-  "image": "https://www.cryol.com/assets/img/cryol___logo__white.png",
-  "@id": "https://www.cryol.com",
-  "url": "https://www.cryol.com",
-  "telephone": "+91 12345 20120",
+  "image": "https://www.cryol.in/assets/img/cryol___logo__white.png",
+  "@id": "https://www.cryol.in",
+  "url": "https://www.cryol.in",
+  "telephone": "+91 99623 10278",
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",

@@ -61,25 +61,25 @@ export default function Footer() {
               </p>
               <p className="flex items-center">
                 <Mail className="mr-2 h-4 w-4 text-primary" />
-                <a href="mailto:contact@cryol.com" className="hover:text-primary">
-                  contact@cryol.com
+                <a href="mailto:contact@cryol.in" className="hover:text-primary">
+                  contact@cryol.in
                 </a>
               </p>
               <p className="flex items-center">
                 <Phone className="mr-2 h-4 w-4 text-primary" />
-                <a href="tel:+911234520120" className="hover:text-primary">
-                  (+91) 12345 20120
+                <a href="tel:+919962310278" className="hover:text-primary">
+                  +91 99623 10278
                 </a>
               </p>
               <p className="flex items-center">
                 <Globe className="mr-2 h-4 w-4 text-primary" />
                 <a
-                  href="https://www.cryol.com"
+                  href="https://www.cryol.in"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-primary"
                 >
-                  www.cryol.com
+                  www.cryol.in
                 </a>
               </p>
             </address>
@@ -128,11 +128,6 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            <div className="mt-4">
-              <Link href="#" className="flex items-center gap-2 text-gray-400 hover:text-primary">
-                <Play /> Play Store
-              </Link>
-            </div>
           </div>
         </div>
       </div>

@@ -50,14 +50,14 @@ export default function ContactPage() {
                 </div>
                 <div className="flex items-center gap-4">
                   <Mail className="h-6 w-6 text-primary" />
-                  <a href="mailto:contact@cryol.com" className="hover:text-primary">
-                    contact@cryol.com
+                  <a href="mailto:contact@cryol.in" className="hover:text-primary">
+                    contact@cryol.in
                   </a>
                 </div>
                 <div className="flex items-center gap-4">
                   <Phone className="h-6 w-6 text-primary" />
-                  <a href="tel:+911234520120" className="hover:text-primary">
-                    (+91) 12345 20120
+                  <a href="tel:+919962310278" className="hover:text-primary">
+                    +91 99623 10278
                   </a>
                 </div>
               </div>
