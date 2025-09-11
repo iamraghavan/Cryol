@@ -19,6 +19,7 @@ export default function Hero() {
           fill
           style={{ objectFit: 'cover' }}
           quality={100}
+          priority
           data-ai-hint="cybersecurity abstract"
         />
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
@@ -52,9 +53,9 @@ export default function Hero() {
               technology solutions to drive growth, innovation, and efficiency.
             </p>
           </div>
-          <Card className="bg-card text-card-foreground rounded-2xl shadow-2xl">
+          <Card className="bg-card/80 backdrop-blur-lg text-card-foreground rounded-2xl shadow-2xl border border-white/10">
             <CardHeader>
-              <CardTitle className="font-headline">
+              <CardTitle className="font-headline text-2xl">
                 Quick Enquiry
               </CardTitle>
               <CardDescription>
