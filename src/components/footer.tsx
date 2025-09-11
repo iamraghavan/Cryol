@@ -37,7 +37,6 @@ const quickLinks = [
 const supportLinks = [
   'Help & FAQ',
   'Contact Us',
-  'Pricing and Plans',
   'Privacy Policy',
   'Terms of Service',
 ];
