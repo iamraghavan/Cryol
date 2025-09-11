@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import type { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
@@ -21,35 +21,14 @@ import {
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Textarea } from '@/components/ui/textarea';
-
-const services = [
-  { id: 'web-app', label: 'Web app pentesting' },
-  { id: 'api', label: 'API pentesting' },
-  { id: 'network', label: 'External Network Pentesting' },
-  { id: 'cloud', label: 'Cloud security assessment' },
-  { id: 'mobile', label: 'Mobile app pentesting' },
-  { id: 'iot', label: 'IoT Pentesting' },
-  { id: 'others', label: 'Others' },
-];
-
-const formSchema = z.object({
-  fullName: z.string().min(2, { message: 'Full name must be at least 2 characters.' }),
-  workEmail: z.string().email({ message: 'Please enter a valid work email.' }),
-  phone: z.string().min(10, { message: 'Please enter a valid phone number.' }),
-  location: z.string().min(2, { message: 'Please enter a valid location.' }),
-  services: z.array(z.string()).refine((value) => value.some((item) => item), {
-    message: 'You have to select at least one service.',
-  }),
-  message: z.string().optional(),
-  recaptcha: z.string().optional(),
-});
+import { quoteFormSchema, services } from '@/lib/form-schemas';
 
 export function QuoteForm() {
   const { toast } = useToast();
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof quoteFormSchema>>({
+    resolver: zodResolver(quoteFormSchema),
     defaultValues: {
       fullName: '',
       workEmail: '',
@@ -57,17 +36,33 @@ export function QuoteForm() {
       location: '',
       services: [],
       message: '',
+      recaptcha: '',
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: 'Quote Request Submitted!',
-      description: "We've received your request and will be in touch shortly.",
-    });
-    form.reset();
-    recaptchaRef.current?.reset();
+  async function onSubmit(values: z.infer<typeof quoteFormSchema>) {
+    try {
+      // Here you would typically send the data to your backend API
+      // For demonstration, we'll just log it and show a success toast.
+      console.log(values);
+
+      // Simulate an API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      toast({
+        title: 'Quote Request Submitted!',
+        description: "We've received your request and will be in touch shortly.",
+      });
+      form.reset();
+      recaptchaRef.current?.reset();
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast({
+        title: 'Submission Failed',
+        description: 'Something went wrong. Please try again later.',
+        variant: 'destructive',
+      });
+    }
   }
 
   return (
@@ -144,7 +139,7 @@ export function QuoteForm() {
           render={() => (
             <FormItem>
               <div className="mb-4">
-                <FormLabel className="text-base">Types of services you need*</FormLabel>
+                <FormLabel className="text-base">Types of services you need *</FormLabel>
               </div>
                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {services.map((service) => (
@@ -190,8 +185,9 @@ export function QuoteForm() {
               <FormLabel>Message</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Enter your message here"
+                  placeholder="Tell us more about your project needs"
                   className="resize-none"
+                  rows={4}
                   {...field}
                 />
               </FormControl>
@@ -227,8 +223,9 @@ export function QuoteForm() {
           type="submit"
           className="w-full text-lg py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground"
           size="lg"
+          disabled={form.formState.isSubmitting}
         >
-          Please Send Message
+          {form.formState.isSubmitting ? 'Submitting...' : 'Please Send Message'}
         </Button>
       </form>
     </Form>

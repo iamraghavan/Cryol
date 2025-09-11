@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import type { z } from 'zod';
 import { useEffect, useState, useRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
@@ -26,22 +26,7 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
-
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: 'Name must be at least 2 characters.',
-  }),
-  email: z.string().email({
-    message: 'Please enter a valid email address.',
-  }),
-  phone: z.string().min(10, {
-    message: 'Please enter a valid phone number.',
-  }),
-  department: z.string({
-    required_error: 'Please select a department to contact.',
-  }),
-  recaptcha: z.string().optional(),
-});
+import { quickEnquirySchema } from '@/lib/form-schemas';
 
 
 export function QuickEnquiryForm() {
@@ -56,23 +41,41 @@ export function QuickEnquiryForm() {
     setIsHeroForm(isDark);
   }, []);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof quickEnquirySchema>>({
+    resolver: zodResolver(quickEnquirySchema),
     defaultValues: {
       name: '',
       email: '',
       phone: '',
+      department: undefined,
+      recaptcha: '',
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: 'Enquiry Submitted!',
-      description: "We've received your request and will be in touch shortly.",
-    });
-    form.reset();
-    recaptchaRef.current?.reset();
+  async function onSubmit(values: z.infer<typeof quickEnquirySchema>) {
+    try {
+      // Here you would typically send the data to your backend API
+      // For demonstration, we'll just log it and show a success toast.
+      console.log(values);
+
+      // Simulate an API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      toast({
+        title: 'Enquiry Submitted!',
+        description: "We've received your request and will be in touch shortly.",
+      });
+
+      form.reset();
+      recaptchaRef.current?.reset();
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast({
+        title: 'Submission Failed',
+        description: 'Something went wrong. Please try again later.',
+        variant: 'destructive',
+      });
+    }
   }
 
   return (
@@ -131,7 +134,7 @@ export function QuickEnquiryForm() {
           name="department"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Select Department to Contact</FormLabel>
+              <FormLabel>Select Department to Contact *</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
@@ -144,6 +147,7 @@ export function QuickEnquiryForm() {
                   <SelectItem value="cyber-forensics">Cyber Forensics</SelectItem>
                   <SelectItem value="cybersecurity">Cybersecurity</SelectItem>
                   <SelectItem value="marketing">Marketing</SelectItem>
+                  <SelectItem value="general">General Inquiry</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -175,7 +179,9 @@ export function QuickEnquiryForm() {
           )}
         />
 
-        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-3 rounded-xl">Submit</Button>
+        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-3 rounded-xl" disabled={form.formState.isSubmitting}>
+          {form.formState.isSubmitting ? 'Submitting...' : 'Submit'}
+        </Button>
       </form>
     </Form>
   );
