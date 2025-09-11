@@ -11,7 +11,7 @@ import Testimonials from '@/components/testimonials';
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+// 01210
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
