@@ -1,6 +1,14 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
 
 const title = 'Cryol - Application Development, Cloud Services, Cyber Security, Cyber Forensics & Digital Marketing in Chennai';
 const description = 'Cryol offers top-notch Application Development, Cloud Services, Cyber Security, Cyber Forensics, and Digital Marketing in Chennai. Discover how we can help your business grow and protect your digital assets.';
@@ -100,18 +108,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="!scroll-smooth">
+    <html lang="en" className={`!scroll-smooth ${inter.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
         <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(LocalBusinessJsonLd) }}
