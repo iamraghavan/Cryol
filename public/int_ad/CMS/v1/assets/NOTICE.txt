@@ -1,0 +1,6 @@
+Decap CMS 3.17.1
+Source: https://github.com/decaporg/decap-cms
+Package: https://www.npmjs.com/package/decap-cms/v/3.17.1
+License: MIT. Third-party notices are in decap-cms.js.LICENSE.txt.
+These browser assets are vendored from the published npm package, including its lazy-loaded chunks.
+The CMS is loaded only under /int_ad/CMS/v1/. Public website pages do not load this bundle.

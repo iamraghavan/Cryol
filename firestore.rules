@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Enquiries and rate limits are accessible only through the server Admin SDK.
+    // Deploy to a dedicated database/project; merge carefully if sharing an existing app.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

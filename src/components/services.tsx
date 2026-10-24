@@ -141,7 +141,7 @@ export default function Services() {
           {services.map((service, index) => (
             <div
               key={service.title}
-              ref={el => cardsRef.current[index] = el}
+              ref={el => { cardsRef.current[index] = el; }}
               className="invisible" // Start as invisible for GSAP
             >
               <Card

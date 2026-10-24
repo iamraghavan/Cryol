@@ -1,123 +1,40 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Toaster } from '@/components/ui/toaster';
-import { Inter } from 'next/font/google';
+import { business } from '@/lib/business';
+import { serviceCatalog } from '@/lib/services';
 
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-});
-
-
-const title = 'Cryol - Application Development, Cloud Services, Cyber Security, Cyber Forensics & Digital Marketing in Chennai';
-const description = 'Cryol offers top-notch Application Development, Cloud Services, Cyber Security, Cyber Forensics, and Digital Marketing in Chennai. Discover how we can help your business grow and protect your digital assets.';
-const url = 'https://www.cryol.in';
-
+const title = 'Cryol Technologies | Complete IT Services in Chennai';
+const description = 'Build, grow and secure your business with Cryol Technologies. Website, application and mobile app development, digital marketing, cloud, cyber security and cyber forensics.';
 export const metadata: Metadata = {
-  title: {
-    default: title,
-    template: `%s | Cryol`,
-  },
-  description: description,
-  keywords: ['IT services Chennai', 'application development', 'cloud services', 'cyber security', 'cyber forensics', 'digital marketing', 'Cryol Chennai'],
-  authors: [{ name: 'Cryol', url: url }],
-  creator: 'Cryol',
-  publisher: 'Cryol',
-  metadataBase: new URL(url),
-  alternates: {
-    canonical: '/',
-  },
-  openGraph: {
-    title: title,
-    description: description,
-    url: url,
-    siteName: 'Cryol',
-    images: [
-      {
-        url: '/assets/img/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Cryol Digital IT Services',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: title,
-    description: description,
-    images: ['/assets/img/og-image.png'],
-  },
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
-  },
-  manifest: '/site.webmanifest',
+  metadataBase: new URL(business.url),
+  title: { default: title, template: '%s | Cryol Technologies' }, description,
+  authors: [{ name: business.name }], creator: business.name, publisher: business.name,
+  openGraph: { title, description, siteName: business.name, locale: 'en_IN', type: 'website', images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Cryol Technologies — Build. Grow. Secure.' }] },
+  twitter: { card: 'summary_large_image', title, description, images: ['/opengraph-image'] },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 } },
 };
-
-
-const LocalBusinessJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Cryol",
-  "image": "https://www.cryol.in/assets/img/cryol___logo__white.png",
-  "@id": "https://www.cryol.in",
-  "url": "https://www.cryol.in",
-  "telephone": "+91 99623 10278",
-  "priceRange": "$$",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "20/22 kannappan street, otteri",
-    "addressLocality": "Chennai",
-    "postalCode": "600012",
-    "addressCountry": "IN"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 13.072175913256956,
-    "longitude": 80.24151447479719
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "opens": "09:00",
-    "closes": "18:00"
-  },
-  "sameAs": [
-    "https://www.facebook.com/cryol",
-    "https://www.twitter.com/cryol",
-    "https://www.instagram.com/cryol",
-    "https://www.linkedin.com/company/cryol"
-  ]
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'ProfessionalService', '@id': business.url + '/#organization', name: business.name, url: business.url, email: business.email, telephone: business.phone,
+      logo: business.url + '/assets/img/cryol___logo__white.png', image: business.url + '/opengraph-image', hasMap: business.map,
+      contactPoint: business.phones.map(phone => ({ '@type': 'ContactPoint', telephone: phone.number, contactType: 'customer service', availableLanguage: 'English' })),
+      address: { '@type': 'PostalAddress', streetAddress: '20/22 Kannappan Street, Otteri', addressLocality: 'Chennai', addressRegion: 'Tamil Nadu', postalCode: '600012', addressCountry: 'IN' },
+      hasOfferCatalog: { '@type': 'OfferCatalog', name: 'IT Services', itemListElement: serviceCatalog.map(s => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.title, url: business.url + '/services/' + s.slug } })) },
+    },
+    { '@type': 'WebSite', '@id': business.url + '/#website', url: business.url, name: business.name, publisher: { '@id': business.url + '/#organization' } },
+  ],
 };
-
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`!scroll-smooth ${inter.variable}`}>
+    <html lang="en-IN">
       <head>
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(LocalBusinessJsonLd) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
       </head>
-      <body className="font-body antialiased">
+      {/* Extensions such as Grammarly can add body attributes before hydration. */}
+      <body suppressHydrationWarning>
+        <a href="#main-content" className="skip-link">Skip to content</a>
         {children}
-        <Toaster />
       </body>
     </html>
   );

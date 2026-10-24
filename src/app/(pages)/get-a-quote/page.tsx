@@ -1,49 +1,6 @@
-import { QuoteForm } from '@/components/quote-form';
-import Stats from '@/components/stats';
 import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Get a Quote',
-  description: 'Request a personalized quote for Cryol\'s IT services in Chennai. Fill out our form for application development, cybersecurity, cloud services, and more. Get a free consultation today.',
-  alternates: {
-    canonical: '/get-a-quote',
-  },
-  openGraph: {
-    title: 'Get a Free Quote for IT Services in Chennai | Cryol',
-    description: 'Protect your business and drive growth. Request a personalized quote from our expert team in Chennai.',
-    url: '/get-a-quote',
-  },
-};
-
-
-export default function GetAQuotePage() {
-  return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="flex flex-col space-y-8">
-            <div className="space-y-4">
-              <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-                GET A QUOTE
-              </div>
-              <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl font-headline">
-                Want To Protect Your Organization from Emerging Cyber Threats?
-              </h1>
-              <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed">
-                Now is the perfect time to stay one step ahead of evolving cyber
-                threats by taking proactive security measures. Fill out the form,
-                and our expert pentesters will help you identify and address
-
-                vulnerabilities before they escalate.
-              </p>
-            </div>
-            <Stats />
-          </div>
-          <div className="bg-card p-8 rounded-2xl shadow-lg">
-            <QuoteForm />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+import { EnquiryForm } from '@/components/enquiry-form';
+export const metadata: Metadata = { title: 'Request an IT Services Proposal', description: 'Tell Cryol Technologies about your website, application, mobile app, marketing, cloud or security requirements and request a scoped proposal.', alternates: { canonical: '/get-a-quote' } };
+export default function Page() {
+ return <><section className="page-hero"><div className="shell"><p className="eyebrow">YOUR IDEA. OUR NEXT CONVERSATION.</p><h1>Let’s scope<br /><span className="brand-accent">something worthwhile.</span></h1><p>Share the challenge, your goals and any timeline you have in mind. We’ll review your requirements before recommending an approach.</p></div></section><section className="home-enquiry section-space"><div className="shell enquiry-layout"><div><p className="eyebrow">WHAT HAPPENS NEXT</p><h2>A proposal that<br /><span>starts with understanding.</span></h2><div className="principles"><div className="principle"><span>01</span><div><h3>We review your enquiry</h3><p>Your requirements help us identify the relevant service and questions.</p></div></div><div className="principle"><span>02</span><div><h3>We discuss the details</h3><p>We clarify goals, scope, budget expectations and constraints.</p></div></div><div className="principle"><span>03</span><div><h3>You review the proposal</h3><p>Deliverables, milestones, pricing and responsibilities are agreed before work begins.</p></div></div></div></div><div className="form-card"><h3>Tell us what you have in mind</h3><p>No technical brief needed. Start with what you want to achieve.</p><EnquiryForm /></div></div></section></>;
 }

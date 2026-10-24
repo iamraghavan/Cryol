@@ -15,9 +15,9 @@
     # RewriteCond %{HTTP_HOST} !^www\. [NC]
     # RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    # To force non-www (recommended for cryol.in):
-    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-    RewriteRule ^(.*)$ https://%1%{REQUEST_URI} [L,R=301]
+    # Match the canonical origin configured by Next.js, if Apache fronts the app.
+    RewriteCond %{HTTP_HOST} ^cryol\.in$ [NC]
+    RewriteRule ^(.*)$ https://www.cryol.in%{REQUEST_URI} [L,R=301]
 </IfModule>
 
 # ----------------------------------------------------------------------

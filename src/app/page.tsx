@@ -1,80 +1,22 @@
-'use client';
-
-import About from '@/components/about';
-import Cta from '@/components/cta';
-import Footer from '@/components/footer';
+import Link from 'next/link';
+import { ArrowDown, ArrowUpRight, Check, Code2, ShieldCheck, Cloud, Globe2, Smartphone, Fingerprint, TrendingUp } from 'lucide-react';
 import Header from '@/components/header';
-import Hero from '@/components/hero';
-import Services from '@/components/services';
-import Technology from '@/components/technology';
-import Testimonials from '@/components/testimonials';
-import { useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-// 01210
-gsap.registerPlugin(ScrollTrigger);
+import Footer from '@/components/footer';
+import { EnquiryForm } from '@/components/enquiry-form';
+import { serviceCatalog } from '@/lib/services';
+import type { Metadata } from 'next';
+export const metadata: Metadata = { alternates: { canonical: '/' } };
 
+const icons = [Globe2, Code2, Smartphone, TrendingUp, Cloud, ShieldCheck, Fingerprint];
 export default function Home() {
-  useEffect(() => {
-    // Ensure GSAP animations run only after the page is fully loaded to avoid layout shifts.
-    const runAnimations = () => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-      tl.fromTo(
-        '.hero-content',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8, delay: 0.2 }
-      );
-
-      // Fade in sections on scroll
-      const sections = ['#services', '#about', '#technology', '#testimonials', '#cta'];
-      sections.forEach((section) => {
-        const el = document.querySelector(section);
-        if (el) {
-          gsap.fromTo(
-            el,
-            { opacity: 0, y: 50 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              scrollTrigger: {
-                trigger: el,
-                start: 'top 85%',
-                toggleActions: 'play none none none',
-              },
-            }
-          );
-        }
-      });
-    };
-    
-    // Check if the document is already loaded
-    if (document.readyState === 'complete') {
-        runAnimations();
-    } else {
-        window.addEventListener('load', runAnimations);
-    }
-
-    return () => {
-      window.removeEventListener('load', runAnimations);
-      // Kill all scroll triggers and timelines
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, []);
-
-  return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <Header />
-      <main className="flex-1">
-        <Hero />
-        <Services />
-        <About />
-        <Technology />
-        <Testimonials />
-        <Cta />
-      </main>
-      <Footer />
-    </div>
-  );
+  return <><Header /><main id="main-content">
+    <section className="home-hero"><div className="shell hero-layout"><div className="hero-copy"><p className="eyebrow"><span className="status-dot" /> YOUR COMPLETE IT PARTNER · CHENNAI</p><h1>Big ideas.<br />Better technology.<br /><span>Real possibilities.</span></h1><p className="hero-description">From your first website to your next big application. We build, grow and secure your digital business — with every IT service under one roof.</p><div className="hero-actions"><Link className="button button-primary" href="/get-a-quote">Tell us what you’re building <ArrowUpRight size={18} /></Link><Link className="text-link" href="/services">Explore our services <ArrowDown size={16} /></Link></div><div className="hero-proof"><span><Check size={15} /> Built around your goals</span><span><Check size={15} /> Security from the start</span></div></div>
+    <div className="orbit-art" aria-hidden="true"><div className="orbit-grid" /><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="orbit orbit-three" /><div className="orbit-core"><span className="core-symbol">c<span>.</span></span><span>CONNECTED POSSIBILITIES</span></div><div className="orbit-label orbit-label-one"><Code2 size={19} /><span>Build something better</span><span className="tiny-dot" /></div><div className="orbit-label orbit-label-two"><ShieldCheck size={19} /><span>Secure by design</span></div><div className="orbit-label orbit-label-three"><TrendingUp size={19} /><span>Made for growth</span></div><div className="art-coordinate">CHENNAI → EVERYWHERE<br />BUILD / GROW / SECURE</div></div>
+    </div><div className="shell hero-bottom"><span>ONE PARTNER. EVERY DIGITAL POSSIBILITY.</span><span>STRATEGY / DESIGN / DEVELOPMENT / SECURITY</span></div></section>
+    <div className="expertise-strip"><div className="shell"><span>Ideas into experiences.</span><span>Complexity into clarity.</span><span>Technology into opportunity.</span></div></div>
+    <section className="section-space" id="services"><div className="shell"><div className="section-heading"><div><p className="eyebrow">01 / WHAT WE DO</p><h2>Everything your digital<br />business needs. <span>Connected.</span></h2></div><p>Start with one service. Bring everything together as you grow. We connect the dots across development, marketing, cloud and security.</p></div><div className="service-grid">{serviceCatalog.map((s, i) => { const Icon = icons[i]; return <Link href={'/services/' + s.slug} key={s.slug} className="service-tile"><div className="tile-top"><Icon size={27} strokeWidth={1.5} /><span>0{i + 1}</span></div><h3>{s.title}</h3><p>{s.short}</p><span className="tile-link">Explore service <ArrowUpRight size={18} /></span></Link>; })}<div className="service-tile service-tile-cta"><span className="eyebrow">NOT SURE WHERE TO START?</span><h3>Let’s figure<br />it out together.</h3><p>Tell us the challenge. We’ll help you identify the next step.</p><Link href="/contact" className="tile-link">Talk to Cryol <ArrowUpRight size={18} /></Link></div></div></div></section>
+    <section className="why-section section-space"><div className="shell why-grid"><div><p className="eyebrow">02 / THE CRYOL APPROACH</p><h2>More than a vendor.<br /><span>A partner in your progress.</span></h2><p className="section-intro">Your website, applications, marketing and infrastructure should work together. We start with the business problem and help you choose the technology that fits.</p><Link className="text-link dark-link" href="/about">Meet your technology partner <ArrowUpRight size={18} /></Link></div><div className="principles">{[['01', 'Business first. Technology second.', 'We understand your goals, users and constraints before recommending a solution.'], ['02', 'Clarity at every step.', 'Agree the scope, deliverables and milestones, with straightforward communication throughout.'], ['03', 'Built for what comes next.', 'Plan for maintainability, security and future improvements from the beginning.']].map(([n, t, d]) => <div className="principle" key={n}><span>{n}</span><div><h3>{t}</h3><p>{d}</p></div></div>)}</div></div></section>
+    <section className="section-space"><div className="shell"><div className="section-heading"><div><p className="eyebrow">03 / HOW WE WORK</p><h2>A clear path.<br /><span>From challenge to launch.</span></h2></div><p>Whether you need one focused improvement or a complete digital project, we make the next step clear.</p></div><div className="process-grid">{[['Discover', 'Tell us what you want to achieve. We explore requirements and the right approach.'], ['Plan', 'Review a proposal with scope, responsibilities, milestones and pricing.'], ['Build & validate', 'Collaborate through design, implementation and testing against agreed requirements.'], ['Launch & improve', 'Go live with a documented handover and the option of ongoing support.']].map(([t, d], i) => <div key={t}><span className="process-number">0{i + 1} /</span><h3>{t}</h3><p>{d}</p></div>)}</div></div></section>
+    <section className="home-enquiry section-space" id="enquiry"><div className="shell enquiry-layout"><div><p className="eyebrow">LET’S MAKE YOUR NEXT MOVE</p><h2>What could we<br /><span>build together?</span></h2><p>Have an idea, an existing system to improve, or a challenge to solve? Share a few details and let’s start a conversation.</p><ul className="check-list"><li><Check /> A conversation about your goals</li><li><Check /> Guidance on the right service</li><li><Check /> A scoped proposal before work begins</li></ul><p className="small-note">Prefer email? <a href="mailto:cryoltechnologies@gmail.com">cryoltechnologies@gmail.com</a></p></div><div className="form-card"><h3>Tell us about your project</h3><p>A few details now. A more useful conversation next.</p><EnquiryForm /></div></div></section>
+  </main><Footer /></>;
 }

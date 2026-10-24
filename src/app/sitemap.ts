@@ -1,29 +1,12 @@
-import { MetadataRoute } from 'next';
-
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.cryol.in';
-
-  const staticPages = [
-    '/',
-    '/about',
-    '/services',
-    '/services/application-development',
-    '/services/cloud-services',
-    '/services/cyber-security',
-    '/services/cyber-forensics',
-    '/services/digital-marketing',
-    '/case-studies',
-    '/blog',
-    '/get-a-quote',
-    '/contact',
-  ];
-
-  const sitemap = staticPages.map((path) => ({
-    url: `${baseUrl}${path}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: 'weekly' as 'weekly',
-    priority: path === '/' ? 1 : 0.8,
-  }));
-
-  return sitemap;
+import type { MetadataRoute } from 'next';
+import { business } from '@/lib/business';
+import { serviceCatalog } from '@/lib/services';
+import { getContent } from '@/lib/content';
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+ const [blogs, cases] = await Promise.all([getContent('blog'), getContent('case-studies')]);
+ const pages = ['/', '/about', '/services', ...serviceCatalog.map(s => '/services/' + s.slug), '/blog', ...(cases.length ? ['/case-studies'] : []), '/get-a-quote', '/contact', '/privacy'];
+ return [
+   ...pages.map(path => ({ url: business.url + path })),
+   ...[...blogs, ...cases].map(entry => ({ url: business.url + '/' + entry.kind + '/' + entry.slug, lastModified: entry.date })),
+ ];
 }
