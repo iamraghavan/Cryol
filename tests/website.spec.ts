@@ -61,6 +61,22 @@ test('blog covers load and failed images use the bundled fallback', async ({ pag
   await expect.poll(() => articleCover.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
 });
 
+test('uploaded cracked-software article serves its original cover and illustrations', async ({ page, request }) => {
+  await page.goto('/blog/hidden-cost-of-cracked-software');
+  const images = page.locator('article img');
+  await expect(images).toHaveCount(4);
+  for (const image of await images.all()) {
+    const src = await image.getAttribute('src');
+    expect(src).toMatch(/^\/uploads\/cracked-software-.*\.webp$/);
+    const response = await request.get(src!);
+    expect(response.status()).toBe(200);
+    expect(response.headers()['content-type']).toContain('image/webp');
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth > 0)).toBe(true);
+    await expect(image).toHaveAttribute('src', src!);
+  }
+});
+
 test('capture desktop and mobile homepage for visual review', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/');

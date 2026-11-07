@@ -67,6 +67,10 @@ Enquiry storage/email is a separate feature. Its Firebase, Gmail, CSRF and Turns
 - Images: public/uploads/
 - Filenames: lowercase words separated by hyphens.
 
+Upload article files directly into `content/blog/` and image files directly into `public/uploads/` at the repository root. Do not upload an extra enclosing folder such as `cryol-blog-upload/`: Next.js does not serve images from inside that folder. An image saved as `public/uploads/example.webp` is referenced in Markdown as `/uploads/example.webp`.
+
+Keep writing-only notes without a publishing header outside `content/blog/`, for example in `docs/content-drafts/`. Every Markdown file in the publishing folders must follow the frontmatter template, including unpublished drafts.
+
 Copy a template from docs/content-templates/, write the content and commit. Keep dates quoted as YYYY-MM-DD. published must be the boolean true or false, not quoted text. Raw HTML in article bodies is not rendered. Use ordinary Markdown headings, links, lists and images.
 
 The existing planning article was migrated to Markdown without changing its URL. The case-study template is unpublished and contains no invented client results.
