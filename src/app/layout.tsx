@@ -4,7 +4,7 @@ import { business } from '@/lib/business';
 import { serviceCatalog } from '@/lib/services';
 
 const title = 'Cryol Technologies | Complete IT Services in Chennai';
-const description = 'Build, grow and secure your business with Cryol Technologies. Website, application and mobile app development, digital marketing, cloud, cyber security and cyber forensics.';
+const description = 'Build, grow and secure your business with Cryol Technologies. Website, application and mobile app development, digital marketing, cloud, networking and infrastructure, cyber security and cyber forensics.';
 export const metadata: Metadata = {
   metadataBase: new URL(business.url),
   title: { default: title, template: '%s | Cryol Technologies' }, description,

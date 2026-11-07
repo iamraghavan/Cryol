@@ -203,7 +203,7 @@ a.service-tile:hover { border-color: var(--brand-hover); transform: translateY(-
 .article-category { margin-top: 30px; }
 .page-hero .article-byline { font-size: 13px !important; }
 .article-cover { display: block; width: 100%; height: auto; max-height: 520px; object-fit: cover; border-radius: 10px; margin-bottom: 40px; }
-.content-card-cover { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 6px; margin-bottom: 24px; }
+.content-card-cover { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; border-radius: 6px; margin-bottom: 24px; }
 .content-empty { max-width: 650px; }
 .content-empty p { margin-block: 24px; color: var(--text-muted); line-height: 1.9; }
 .markdown-content img { max-width: 100%; height: auto; border-radius: 8px; }

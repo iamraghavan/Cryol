@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-const slugs = ['website-development', 'application-development', 'mobile-app-development', 'digital-marketing', 'cloud-services', 'cyber-security', 'cyber-forensics'];
+const slugs = ['website-development', 'application-development', 'mobile-app-development', 'digital-marketing', 'cloud-services', 'cyber-security', 'cyber-forensics', 'networking-and-infrastructure'];
 
 // UI tests stub only the third-party widget, never the real API rejection cases.
 test.beforeEach(async ({ page }) => {
@@ -15,8 +15,8 @@ test('every service has its own canonical, schema, content and selected enquiry'
     await expect(page.locator('h1')).toHaveCount(1);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://www.cryol.in/services/' + slug);
     await expect(page.locator('select[name="service"]')).toHaveValue(slug);
-    await expect(page.locator('.capability')).toHaveCount(4);
-    await expect(page.locator('.faq-list details')).toHaveCount(3);
+    expect(await page.locator('.capability').count()).toBeGreaterThanOrEqual(4);
+    expect(await page.locator('.faq-list details').count()).toBeGreaterThanOrEqual(3);
     const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
     expect(schemas.some(value => JSON.parse(value)['@type'] === 'Service')).toBeTruthy();
   }
@@ -24,7 +24,7 @@ test('every service has its own canonical, schema, content and selected enquiry'
 
 test('mobile navigation and key pages fit the viewport', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  for (const url of ['/', '/contact', '/services/mobile-app-development', '/get-a-quote']) {
+  for (const url of ['/', '/contact', '/services/mobile-app-development', '/services/networking-and-infrastructure', '/blog', '/get-a-quote']) {
     await page.goto(url);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
   }
@@ -45,6 +45,20 @@ test('public pages have working internal destinations and no browser crashes', a
     await expect(page.locator('h1')).toHaveCount(1);
   }
   expect(errors).toEqual([]);
+});
+
+test('blog covers load and failed images use the bundled fallback', async ({ page }) => {
+  await page.goto('/blog');
+  const cover = page.locator('.content-card-cover').first();
+  await cover.scrollIntoViewIfNeeded();
+  await expect.poll(() => cover.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
+  await page.goto('/blog/planning-your-business-website');
+  const articleCover = page.locator('.article-cover');
+  await expect.poll(() => articleCover.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
+  await page.route('**/uploads/missing-test-cover.png', route => route.fulfill({ status: 404, body: '' }));
+  await articleCover.evaluate((image: HTMLImageElement) => { image.src = '/uploads/missing-test-cover.png'; });
+  await expect(articleCover).toHaveAttribute('src', '/assets/img/blog-default.svg');
+  await expect.poll(() => articleCover.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
 });
 
 test('capture desktop and mobile homepage for visual review', async ({ page }) => {

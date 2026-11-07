@@ -22,7 +22,7 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-Browser tests start the production build at localhost:3000 with mail secrets empty. They cover all seven service pages, mobile layouts, real API rejection/unavailable responses and a stubbed saved-but-notified-later response. They do not send email or connect to a live database.
+Browser tests start the production build at localhost:3000 with mail secrets empty. They cover all eight service pages, mobile layouts, real API rejection/unavailable responses and a stubbed saved-but-notified-later response. They do not send email or connect to a live database.
 
 Set NEXT_PUBLIC_TURNSTILE_SITE_KEY before building (use your local configuration or a Cloudflare test site key in CI). Browser tests stub Cloudflare's widget script; server validation tests use simulated Siteverify responses. Development writes to .next-dev so it can run alongside production builds.
 

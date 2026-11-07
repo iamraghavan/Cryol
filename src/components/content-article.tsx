@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ContentImage from './content-image';
 import type { Metadata } from 'next';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -27,9 +28,9 @@ export default function ContentArticle({ entry }: { entry: ContentEntry }) {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
     <section className="page-hero"><div className="shell"><Link href={'/' + entry.kind} className="text-link">← All {label.toLowerCase()}</Link><p className="eyebrow article-category">{label.toUpperCase()}{entry.industry ? ' / ' + entry.industry.toUpperCase() : ''}</p><h1>{entry.title}</h1><p>{entry.summary}</p><p className="article-byline"><time dateTime={entry.date}>{new Intl.DateTimeFormat('en-IN', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(entry.date))}</time> · {entry.author}</p></div></section>
     <article className="shell prose-page section-space markdown-content">
-      {entry.cover && <img src={entry.cover} alt={entry.coverAlt || entry.title} className="article-cover" />}
+      <ContentImage src={entry.cover} alt={entry.coverAlt || entry.title} className="article-cover" width={1200} height={630} />
       {entry.client && <p>Client: <strong>{entry.client}</strong></p>}
-      <ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml components={{ h1: ({ children }) => <h2>{children}</h2> }}>{entry.body}</ReactMarkdown>
+      <ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml components={{ img: ({ node, ...props }) => <ContentImage {...props} loading="lazy" />, h1: ({ children }) => <h2>{children}</h2> }}>{entry.body}</ReactMarkdown>
     </article>
     <section className="home-enquiry section-space"><div className="shell"><p className="eyebrow">TURN AN IDEA INTO YOUR NEXT PROJECT</p><h2>Have a similar challenge?<br /><span>Let’s discuss it.</span></h2><div className="hero-actions"><Link href="/get-a-quote" className="button button-primary">Tell us about your project <ArrowUpRight size={18} /></Link></div>{entry.services.length > 0 && <div className="related-services">{entry.services.map(slug => <Link key={slug} href={'/services/' + slug}>{getService(slug).title}<ArrowUpRight size={17} /></Link>)}</div>}</div></section>
   </>;

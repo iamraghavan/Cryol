@@ -124,6 +124,34 @@ export const serviceCatalog: Service[] = [
       { question: 'Can you examine any device or account?', answer: 'We only examine systems and information covered by documented authority. The engagement defines ownership, access, permitted activities and evidence handling requirements.' },
     ],
   },
+  {
+    slug: 'networking-and-infrastructure', title: 'Networking and Infrastructure', short: 'Reliable connections. Infrastructure ready for everyday work.',
+    intro: 'Cryol plans, installs and supports business networking and IT infrastructure in Chennai and beyond. From office LAN and enterprise Wi-Fi to branch connectivity, servers, storage and hybrid environments, we design around your sites, users, applications and growth plans.',
+    outcome: 'Keep your teams, devices and business systems connected.',
+    capabilities: [
+      { title: 'Network assessment & architecture', description: 'Site surveys, asset inventories, capacity planning, physical and logical network diagrams, IP addressing, VLAN design and upgrade roadmaps for offices, campuses, warehouses and branch locations.' },
+      { title: 'Structured cabling & fibre connectivity', description: 'Plan and install Cat6/Cat6A copper cabling, fibre backbones, patch panels, racks and cable management. Scope cable testing, port labelling and handover records for new offices and relocations.' },
+      { title: 'LAN switching & routing', description: 'Configure managed switches, PoE devices, inter-VLAN routing, DHCP, DNS and access controls. Separate staff, guest, voice, CCTV and IoT traffic with an agreed segmentation plan.' },
+      { title: 'Enterprise Wi-Fi & wireless networks', description: 'Wireless surveys, access-point placement, coverage and capacity planning, controller configuration, roaming, guest access and authentication for indoor or outdoor business environments.' },
+      { title: 'WAN, branch connectivity & SD-WAN', description: 'Plan broadband, leased-line and MPLS connectivity with your provider. Configure multi-site routing, SD-WAN, internet failover and link monitoring to match application and availability requirements.' },
+      { title: 'Firewalls, VPNs & secure remote access', description: 'Deploy and review firewall policies, site-to-site and remote-access VPNs, network segmentation and identity-based access. Configure multi-factor authentication where supported and document permitted access.' },
+      { title: 'Servers, virtualisation & operating systems', description: 'Size and deploy physical or virtual Windows and Linux servers, hypervisors and application infrastructure. Plan patching, capacity, service dependencies and migration from ageing equipment.' },
+      { title: 'Identity, directory & endpoint infrastructure', description: 'Configure Active Directory, directory integration, group policies, DNS, DHCP and device onboarding. Plan user access, endpoint management and joiner/leaver processes around your environment.' },
+      { title: 'Storage, backups & disaster recovery', description: 'Assess NAS, SAN and shared-file storage, permissions, redundancy and retention. Plan encrypted backups, off-site copies, restore testing and recovery procedures against agreed recovery objectives.' },
+      { title: 'Server rooms, racks & power planning', description: 'Plan rack layouts, equipment placement, UPS sizing, power distribution, cooling and environmental monitoring. Coordinate electrical, facilities and ISP work with the responsible specialists.' },
+      { title: 'Voice, CCTV & connected-device networks', description: 'Prepare network connectivity, PoE budgets, VLANs and quality-of-service policies for IP telephony, video conferencing, CCTV, access-control and IoT systems, with clear vendor integration responsibilities.' },
+      { title: 'Hybrid connectivity, monitoring & maintenance', description: 'Connect on-premises infrastructure with cloud workloads. Configure network and server monitoring, configuration backups, troubleshooting and maintenance, with response windows and escalation agreed in your support scope.' },
+    ],
+    deliverables: ['Site assessment, asset inventory and requirements', 'Network topology, IP plan and equipment recommendations', 'Installation, configuration and migration plan with rollback steps', 'Agreed connectivity, coverage, failover and restore checks', 'Labelled cabling, configuration records and operating documentation', 'Administrator handover and optional maintenance agreement'],
+    questions: [
+      { question: 'Can you set up the complete IT infrastructure for a new office?', answer: 'Yes. We can scope cabling, racks, switching, Wi-Fi, internet connectivity, firewalls, servers and user access together. We first review your floor plan, user count, applications, budget and opening date, then define equipment, installation and third-party responsibilities.' },
+      { question: 'Can you fix slow Wi-Fi, frequent disconnections or network outages?', answer: 'We assess coverage, interference, device density, cabling, switch health, internet links and configuration before recommending changes. The work may involve access-point placement, capacity upgrades, traffic segmentation or provider escalation.' },
+      { question: 'Do you connect multiple branches and remote workers?', answer: 'Yes. We can plan site-to-site VPNs, SD-WAN or provider-managed links and remote-access VPNs. The design depends on your locations, applications, bandwidth, identity controls and availability requirements.' },
+      { question: 'Can you upgrade existing infrastructure without interrupting the business?', answer: 'We review dependencies and agree maintenance windows, staged changes, backups and rollback steps. Some work needs an interruption; expected downtime and acceptance checks are documented before implementation.' },
+      { question: 'Do you supply hardware and provide ongoing maintenance?', answer: 'Equipment sourcing, licensing, installation and ongoing support can be included in the proposal. Hardware warranties, vendor subscriptions, support hours, remote or on-site coverage and response targets are stated explicitly in the agreement.' },
+      { question: 'How much does a networking and infrastructure project cost?', answer: 'Pricing depends on site size, users, cable runs, wireless coverage, equipment, licensing and support requirements. Share your location, floor plan, current issues and target date so we can arrange an assessment and prepare an itemised scope.' },
+    ],
+  },
 ];
 
 export const getService = (slug: string) => serviceCatalog.find(service => service.slug === slug)!;

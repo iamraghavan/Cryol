@@ -12,7 +12,7 @@ export const contentSchema = z.object({
   author: z.string().trim().min(1).max(100).default('Cryol Technologies'),
   cover: z.string().regex(/^(?:\/uploads\/[^?#\r\n]+\.(?:png|jpe?g|webp|gif|avif))?$/i).refine(v => !v.split('/').includes('..')).optional().default(''),
   coverAlt: z.string().max(200).optional().default(''),
-  services: z.array(z.string().refine(slug => serviceCatalog.some(s => s.slug === slug))).max(7).optional().default([]),
+  services: z.array(z.string().refine(slug => serviceCatalog.some(s => s.slug === slug))).max(serviceCatalog.length).optional().default([]),
   seoTitle: z.string().max(150).optional().default(''),
   seoDescription: z.string().max(320).optional().default(''),
   industry: z.string().max(100).optional().default(''),
